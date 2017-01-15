@@ -3,7 +3,9 @@ package dao;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
+import domain.EstadoPedido;
 import domain.Pedido;
 
 /**
@@ -26,12 +28,21 @@ public class PedidosDAO extends GenericDAO<Pedido> implements IPedidosDAO {
 		return update(pedido);
 	}
 
-	public Pedido getPedidoo(String id) {
+	public Pedido getPedido(String id) {
 		return find(id);
 	}
 
 	public List<Pedido> listPedidos() {
 		return findAll();
+	}
+
+	public Pedido getUltimoPedidoPendiente(EstadoPedido estado) {
+		Query q = em.createNamedQuery("pedidoPorEstadoyFecha");
+		q.setParameter("estado", EstadoPedido.PENDIENTE.name());
+		q.setFirstResult(0);
+		q.setMaxResults(1);
+		
+		return (Pedido) q.getSingleResult();
 	}
 	
 }
