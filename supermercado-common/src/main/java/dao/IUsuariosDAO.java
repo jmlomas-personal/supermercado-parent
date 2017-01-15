@@ -13,6 +13,8 @@ public interface IUsuariosDAO {
 	public Usuario updateUsuario(Usuario usuario);
 
 	public Usuario getUsuario(String id);
+	
+	public Usuario getUsuarioDni(String dni);
 
 	public List<Usuario> listUsuarios();
 }
