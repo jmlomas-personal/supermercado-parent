@@ -16,7 +16,7 @@ import javax.persistence.PersistenceContext;
  */
 public abstract class GenericDAO<T> {	
 	
-    @PersistenceContext
+    @PersistenceContext( unitName = "SupermercadoPU" )
     protected EntityManager em;
 
     private Class<T> type;
