@@ -82,4 +82,12 @@ public class Pedido implements Serializable {
 		this.lineasPedido = lineasPedido;
 	}
 	
+	public void anyadeLineaPedido(LineaPedido lineaPedido){
+		this.lineasPedido.add(lineaPedido);
+	}
+	
+	public void eliminaLineaPedido(LineaPedido lineaPedido){
+		this.lineasPedido.remove(lineaPedido);
+	}
+	
 }

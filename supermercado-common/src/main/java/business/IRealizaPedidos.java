@@ -2,15 +2,16 @@ package business;
 
 import domain.LineaPedido;
 import domain.Pedido;
-import domain.Usuario;
+import utils.StockInsuficienteException;
+import utils.UsuarioNoExisteException;
 
 public abstract interface IRealizaPedidos {
 
-	public void crearPedido(Usuario u);
+	public void crearPedido(String dni) throws UsuarioNoExisteException;
 	
-	public void anyadeLineaPedido(LineaPedido lineaPedido);
+	public Pedido anyadeLineaPedido(LineaPedido lineaPedido) throws StockInsuficienteException;
 	
-	public void eliminaLineaPedido(LineaPedido lineaPedido);
+	public Pedido eliminaLineaPedido(LineaPedido lineaPedido);
 	
 	public Pedido confirmarPedido();
 }
