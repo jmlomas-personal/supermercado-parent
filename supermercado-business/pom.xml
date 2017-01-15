@@ -6,4 +6,15 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>supermercado-business</artifactId>
+  
+  
+  <!-- Dependencias -->
+  <dependencies>
+    <dependency>
+            <groupId>es.unican</groupId>
+            <artifactId>supermercado-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+  
 </project>

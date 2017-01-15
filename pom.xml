@@ -5,10 +5,25 @@
 	<groupId>es.unican</groupId>
 	<artifactId>supermercado-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>	
+	<packaging>pom</packaging>
 	<name>supermercado-parent</name>
-	
+
 	<modules>
+		<module>supermercado-business</module>
+		<module>supermercado-common</module>
+		<module>supermercado-dao</module>
 		<module>supermercado-ear</module>
+		<module>supermercado-war</module>
 	</modules>
+	
+	<dependencies>
+		<!-- Java EE API -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>7.0</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+	
 </project>

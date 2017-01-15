@@ -10,5 +10,7 @@ public abstract interface IRealizaPedidos {
 	
 	public void anyadeLineaPedido(LineaPedido lineaPedido);
 	
+	public void eliminaLineaPedido(LineaPedido lineaPedido);
+	
 	public Pedido confirmarPedido();
 }
