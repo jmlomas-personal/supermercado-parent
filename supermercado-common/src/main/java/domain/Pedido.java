@@ -37,7 +37,8 @@ public class Pedido implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private EstadoPedido estado;
 	private Date fecha;
-	
+	private Date horaRecogida;	
+
 	// Relaciones con otras clases de dominio
 	@ManyToOne
 	@JoinColumn ( name = "usuario_fk" )
@@ -93,6 +94,14 @@ public class Pedido implements Serializable {
 	
 	public void eliminaLineaPedido(LineaPedido lineaPedido){
 		this.lineasPedido.remove(lineaPedido);
+	}
+	
+	public Date getHoraRecogida() {
+		return horaRecogida;
+	}
+
+	public void setHoraRecogida(Date horaRecogida) {
+		this.horaRecogida = horaRecogida;
 	}
 	
 }
