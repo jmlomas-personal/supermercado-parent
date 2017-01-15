@@ -6,11 +6,11 @@ import domain.Usuario;
 
 public interface IUsuariosDAO {
 
-	public void addUsuario(Usuario Usuario);
+	public Usuario addUsuario(Usuario usuario);
 
-	public Usuario deleteUsuario(Usuario Usuario);
+	public void deleteUsuario(Usuario usuario);
 
-	public Usuario updateUsuario(Usuario Usuario);
+	public Usuario updateUsuario(Usuario usuario);
 
 	public Usuario getUsuario(String id);
 

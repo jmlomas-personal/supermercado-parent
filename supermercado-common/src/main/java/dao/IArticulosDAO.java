@@ -6,9 +6,9 @@ import domain.Articulo;
 
 public interface IArticulosDAO {
 
-	public void addArticulo(Articulo articulo);
+	public Articulo addArticulo(Articulo articulo);
 	
-	public Articulo deleteArticulo(Articulo articulo);
+	public void deleteArticulo(Articulo articulo);
 	
 	public Articulo updateArticulo(Articulo articulo);
 	

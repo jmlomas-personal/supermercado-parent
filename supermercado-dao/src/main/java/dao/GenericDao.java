@@ -7,7 +7,14 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-public abstract class GenericDao<T> {
+/**
+ * Clase para automatizar y eliminar la duplicacion de codigo
+ * al implementar las clases DAO
+ * Fuente: https://www.codeproject.com/articles/251166/the-generic-dao-pattern-in-java-with-spring-3-and 
+ * @author Juan Manuel Lomas
+ *
+ */
+public abstract class GenericDAO<T> {
 
     @PersistenceContext
     protected EntityManager em;
@@ -15,12 +22,17 @@ public abstract class GenericDao<T> {
     private Class<T> type;
 
     @SuppressWarnings("unchecked")
-	public GenericDao() {
+	public GenericDAO() {
         Type t = getClass().getGenericSuperclass();
         ParameterizedType pt = (ParameterizedType) t;
         type = (Class<T>) pt.getActualTypeArguments()[0];
     }
 
+	@SuppressWarnings("unchecked")
+	protected List<T> findAll() {
+		return em.createQuery("SELECT e FROM " + type.getSimpleName() + " AS e").getResultList();
+	}
+    
     public T create(final T t) {
         this.em.persist(t);
         return t;
@@ -36,11 +48,6 @@ public abstract class GenericDao<T> {
 
     public T update(final T t) {
         return this.em.merge(t);    
-    }
-    
-	@SuppressWarnings("unchecked")
-	protected List<T> getAll() {
-		return em.createQuery("SELECT e FROM " + type.getSimpleName() + " AS e").getResultList();
-	}
+    }    
     
 }
