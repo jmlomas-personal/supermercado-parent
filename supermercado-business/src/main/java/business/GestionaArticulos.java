@@ -7,9 +7,9 @@ import javax.ejb.EJB;
 import dao.IArticulosDAO;
 import domain.Articulo;
 
-public class GestionaArticulos implements IGestionaArticulos {
+public class GestionaArticulos implements IGestionaArticulos, IVisualizaArticulos {
 
-	private List<Articulo> articulos;
+
 	@EJB
 	private IArticulosDAO articulosDAO;
 
@@ -17,14 +17,14 @@ public class GestionaArticulos implements IGestionaArticulos {
 	 * Constructor de la clase
 	 */
 	public GestionaArticulos(){
-		
+
 	}
 
 	/**
 	 * Metodo que da de alta un articulo
 	 */
 	public void altaArticulo(Articulo articulo) {
-		this.articulos.add(articulo);
+		articulosDAO.addArticulo(articulo);
 	}
 
 	/**
@@ -32,44 +32,41 @@ public class GestionaArticulos implements IGestionaArticulos {
 	 * @return El articulo borrado. Null si no existia el articulo
 	 */
 	public Articulo bajaArticulo(Articulo articulo) {
-		Articulo auxArticulo = buscaArticulo(articulo);
-		if (auxArticulo != null){
-			articulos.remove(articulo);
+		Articulo auxArt = articulosDAO.getArticulo(articulo.getId());
+		if(auxArt != null){
+			articulosDAO.deleteArticulo(articulo);
 		}
-		return auxArticulo;
+		return auxArt;
 	}
 
 	/**
 	 * Metodo que actualiza el stock de un articulo
+	 * @return El objeto actualizado o Null si el objeto a actualizar
+	 * no existe
 	 */
-	public void actualizarStockArticulo(Articulo articulo, int unidades) {
-		int aux = 0;
-		Articulo articuloAux = null;
-
-		while(aux < articulos.size() && articuloAux == null){	
-			if(articulo.getId() == articulos.get(aux).getId()){
-				articuloAux = articulos.get(aux);
-				articuloAux.setUnidadesStock(unidades);
-			}
-			aux++;
+	public Articulo actualizarStockArticulo(Articulo articulo, int unidades) {
+		Articulo auxArt = articulosDAO.getArticulo(articulo.getId());
+		if(auxArt != null){
+			articulosDAO.updateArticulo(articulo);
 		}
+		return auxArt;
+	}
+	
+	/**
+	 * Metodo que retorna la lista de articulos completa
+	 * @return Lista de articulos
+	 */
+	public List<Articulo> verArticulos() {
+		return articulosDAO.listArticulos();
 	}
 
 	/**
-	 * Metodo privado que busca un articulo
-	 * @param articulo articulo a buscar
-	 * @return El articulo buscado o Null si no se encontro el articulo
+	 * Metodo que retorna el articulo con el id pasado como parametro
+	 * @return Articulo con el id indicado o Null si no existe un articulo
+	 * con dicho id
 	 */
-	private Articulo buscaArticulo(Articulo articulo){
-		int aux = 0;
-		Articulo articuloAux = null;
-
-		while(aux < articulos.size() && articuloAux == null){	
-			if(articulo.getId() == articulos.get(aux).getId()){
-				articuloAux = articulos.get(aux);
-			}
-			aux++;
-		}
-		return articuloAux;
+	public Articulo verArticulo(String id) {
+		return articulosDAO.getArticulo(id);
 	}
+
 }

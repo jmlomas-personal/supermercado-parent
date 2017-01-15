@@ -8,6 +8,6 @@ public abstract interface IGestionaArticulos {
 	
 	public Articulo bajaArticulo(Articulo articulo);
 	
-	public void actualizarStockArticulo(Articulo articulo, int unidades);
+	public Articulo actualizarStockArticulo(Articulo articulo, int unidades);
 
 }

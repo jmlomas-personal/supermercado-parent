@@ -7,6 +7,6 @@ public abstract interface IVisualizaArticulos {
 
 	public List<Articulo> verArticulos();
 	
-	public Articulo verArticulo();
+	public Articulo verArticulo(String id);
 	
 }
