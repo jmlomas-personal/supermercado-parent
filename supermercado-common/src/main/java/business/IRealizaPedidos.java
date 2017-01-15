@@ -1,5 +1,7 @@
 package business;
 
+import java.sql.Date;
+
 import domain.LineaPedido;
 import domain.Pedido;
 import utils.StockInsuficienteException;
@@ -13,5 +15,5 @@ public abstract interface IRealizaPedidos {
 	
 	public Pedido eliminaLineaPedido(LineaPedido lineaPedido);
 	
-	public Pedido confirmarPedido();
+	public Pedido confirmarPedido(Date horaRecogida);
 }

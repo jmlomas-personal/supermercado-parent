@@ -1,5 +1,7 @@
 package business;
 
+import java.sql.Date;
+
 import javax.ejb.EJB;
 
 import dao.IArticulosDAO;
@@ -13,7 +15,7 @@ import domain.Usuario;
 import utils.StockInsuficienteException;
 import utils.UsuarioNoExisteException;
 
-public class GestionaPedidos implements IGestionaPedidos, IRealizaPedidos {
+public class GestionPedidos implements IGestionaPedidos, IRealizaPedidos {
 
 	@EJB
 	private IPedidosDAO pedidosDAO;
@@ -24,7 +26,7 @@ public class GestionaPedidos implements IGestionaPedidos, IRealizaPedidos {
 
 	private Pedido pedidoPreparacion;
 
-	public GestionaPedidos(){
+	public GestionPedidos(){
 
 	}
 
@@ -88,20 +90,30 @@ public class GestionaPedidos implements IGestionaPedidos, IRealizaPedidos {
 		} else {
 			artAux.setUnidadesStock(stock - cantidad);
 			articulosDAO.updateArticulo(artAux);
-			pedidoPreparacion.anyadeLineaPedido(lineaPedido);
+			this.pedidoPreparacion.anyadeLineaPedido(lineaPedido);
 		}
 
 		return this.pedidoPreparacion;
 	}
 
+	/**
+	 * Metodo que elimina una linea de pedido al pedido del usuario
+	 */
 	public Pedido eliminaLineaPedido(LineaPedido lineaPedido) {
+		int cantidad = lineaPedido.getCantidad(); 
+		Articulo artAux = lineaPedido.getArticulo();
+		int stock = artAux.getUnidadesStock();
+
+		artAux.setUnidadesStock(stock + cantidad);
+		articulosDAO.updateArticulo(artAux);
 		this.pedidoPreparacion.eliminaLineaPedido(lineaPedido);
 		return this.pedidoPreparacion;
 	}
 
-	public Pedido confirmarPedido() {
-		
-		return null;
+	public Pedido confirmarPedido(Date horaRecogida ) {
+		this.pedidoPreparacion.setHoraRecogida(horaRecogida);
+		pedidosDAO.addPedido(pedidoPreparacion);
+		return pedidoPreparacion;
 	}
 
 }

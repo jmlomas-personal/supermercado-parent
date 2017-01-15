@@ -7,7 +7,7 @@ import javax.ejb.EJB;
 import dao.IArticulosDAO;
 import domain.Articulo;
 
-public class GestionaArticulos implements IGestionaArticulos, IVisualizaArticulos {
+public class GestionArticulos implements IGestionaArticulos, IVisualizaArticulos {
 
 
 	@EJB
@@ -16,7 +16,7 @@ public class GestionaArticulos implements IGestionaArticulos, IVisualizaArticulo
 	/**
 	 * Constructor de la clase
 	 */
-	public GestionaArticulos(){
+	public GestionArticulos(){
 
 	}
 
