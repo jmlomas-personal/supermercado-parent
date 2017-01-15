@@ -1,8 +1,9 @@
 package business;
 
 import domain.Usuario;
+import utils.UsuarioYaExisteException;
 
 public abstract interface IRegistroUsuarios {
 
-	public void altaUsuario(Usuario usuario);
+	public Usuario altaUsuario(Usuario usuario) throws UsuarioYaExisteException;
 }
