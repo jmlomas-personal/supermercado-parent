@@ -25,7 +25,7 @@ public class GestionaPedidos implements IGestionaPedidos, IRealizaPedidos {
 	}
 
 	public Pedido procesarPedido() {
-		Queue<Pedido> pedidos = new LinkedList<Pedido>(pedidosDAO.getPedidosEstado(EstadoPedido.PENDIENTE));
+		Pedido pedidos = pedidosDAO.getUltimoPedidoPendiente(EstadoPedido.PENDIENTE));
 		return null;
 	}
 
