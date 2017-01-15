@@ -3,10 +3,12 @@ package business;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 
 import dao.IArticulosDAO;
 import domain.Articulo;
 
+@Stateless
 public class GestionArticulos implements IGestionaArticulos, IVisualizaArticulos {
 
 

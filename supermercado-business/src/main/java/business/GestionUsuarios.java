@@ -1,12 +1,13 @@
 package business;
 
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 
 import dao.IUsuariosDAO;
 import domain.Usuario;
 import utils.UsuarioYaExisteException;
 
-
+@Stateless
 public class GestionUsuarios implements IRegistroUsuarios {
 
 	@EJB

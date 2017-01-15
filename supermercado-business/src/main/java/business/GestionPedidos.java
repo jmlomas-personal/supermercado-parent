@@ -3,6 +3,7 @@ package business;
 import java.sql.Date;
 
 import javax.ejb.EJB;
+import javax.ejb.Stateful;
 
 import dao.IArticulosDAO;
 import dao.IPedidosDAO;
@@ -15,6 +16,7 @@ import domain.Usuario;
 import utils.StockInsuficienteException;
 import utils.UsuarioNoExisteException;
 
+@Stateful
 public class GestionPedidos implements IGestionaPedidos, IRealizaPedidos {
 
 	@EJB
@@ -98,6 +100,7 @@ public class GestionPedidos implements IGestionaPedidos, IRealizaPedidos {
 
 	/**
 	 * Metodo que elimina una linea de pedido al pedido del usuario
+	 * @return El pedido (para mostrar su estado)
 	 */
 	public Pedido eliminaLineaPedido(LineaPedido lineaPedido) {
 		int cantidad = lineaPedido.getCantidad(); 
@@ -110,6 +113,10 @@ public class GestionPedidos implements IGestionaPedidos, IRealizaPedidos {
 		return this.pedidoPreparacion;
 	}
 
+	/**
+	 * Metodo que confirma un pedido, anyadiendo este a la bd
+	 * @return El pedido
+	 */
 	public Pedido confirmarPedido(Date horaRecogida ) {
 		this.pedidoPreparacion.setHoraRecogida(horaRecogida);
 		pedidosDAO.addPedido(pedidoPreparacion);
