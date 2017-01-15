@@ -17,7 +17,8 @@ public class GestionaPedidos implements IGestionaPedidos, IRealizaPedidos {
 
 	
 	public Pedido procesarPedido() {
-		// TODO Auto-generated method stub
+		// TODO A espera de un metodo del DAO que retorne la lista
+		// de pedidos con el estado pendiente
 		return null;
 	}
 

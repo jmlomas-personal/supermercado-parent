@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import domain.Pedido;
+import domain.EstadoPedido;
 
 public interface IPedidosDAO {
 
@@ -12,7 +13,9 @@ public interface IPedidosDAO {
 	
 	public Pedido updatePedido(Pedido pedido);
 	
-	public Pedido getPedidoo(String id);
+	public Pedido getPedido(String id);
+	
+	public List<Pedido> getPedidosEstado(EstadoPedido estado);
 	
 	public List<Pedido> listPedidos();
 }
