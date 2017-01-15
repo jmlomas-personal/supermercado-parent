@@ -14,8 +14,8 @@ import javax.persistence.PersistenceContext;
  * @author Juan Manuel Lomas
  *
  */
-public abstract class GenericDAO<T> {
-
+public abstract class GenericDAO<T> {	
+	
     @PersistenceContext
     protected EntityManager em;
 

@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 /**
@@ -20,6 +22,9 @@ import javax.persistence.OneToMany;
  *
  */
 @Entity
+@NamedQueries({
+	@NamedQuery ( name = "pedidoPorEstadoyFecha", query = "SELECT p FROM PEDIDO AS p WHERE p.estado = :estado ORDER BY p.fecha DESC" )
+})
 public class Pedido implements Serializable {
 
 	private static final long serialVersionUID = 1L;
