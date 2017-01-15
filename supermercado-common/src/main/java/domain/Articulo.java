@@ -20,7 +20,7 @@ public class Articulo implements Serializable {
 	// Atributos
 	@Id
 	@GeneratedValue
-	private long id;
+	private String id;
 	private String nombre;
 	private int unidadesStock;
 	private double precio;
@@ -50,11 +50,11 @@ public class Articulo implements Serializable {
 		this.precio = precio;
 	}
 
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	
