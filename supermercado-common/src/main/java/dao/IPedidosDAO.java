@@ -15,7 +15,7 @@ public interface IPedidosDAO {
 	
 	public Pedido getPedido(String id);
 	
-	public List<Pedido> getPedidosEstado(EstadoPedido estado);
+	public List<Pedido> getUltimoPedidoPendiente(EstadoPedido estado);
 	
 	public List<Pedido> listPedidos();
 }
