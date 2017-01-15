@@ -100,7 +100,7 @@ public class GestionaPedidos implements IGestionaPedidos, IRealizaPedidos {
 	}
 
 	public Pedido confirmarPedido() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
