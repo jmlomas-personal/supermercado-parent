@@ -1,6 +1,17 @@
 package domain;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  * Clase de dominio que representa
@@ -8,12 +19,27 @@ import java.sql.Date;
  * @author Juan Manuel Lomas
  *
  */
-public class Pedido {
+@Entity
+public class Pedido implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	// Atributos
+	@Id
+	@GeneratedValue
 	private String id;
+	
+	@Enumerated(EnumType.STRING)
 	private EstadoPedido estado;
 	private Date fecha;
+	
+	// Relaciones con otras clases de dominio
+	@ManyToOne
+	@JoinColumn ( name = "usuario_fk" )
+	private Usuario usuario;
+	
+	@OneToMany( mappedBy = "pedido" )
+	private List<LineaPedido> lineasPedido;	
 	
 	// Getters y setters
 	public String getId() {
@@ -38,6 +64,22 @@ public class Pedido {
 	
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public List<LineaPedido> getLineasPedido() {
+		return lineasPedido;
+	}
+
+	public void setLineasPedido(List<LineaPedido> lineasPedido) {
+		this.lineasPedido = lineasPedido;
 	}
 	
 }

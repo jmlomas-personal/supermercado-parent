@@ -1,16 +1,39 @@
 package domain;
 
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 /**
  * Clase de dominio que representa
  * una linea del pedido
  * @author Juan Manuel Lomas
  *
  */
-public class LineaPedido {
+@Entity
+public class LineaPedido implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	// Atributos
+	@Id
+	@GeneratedValue
+	private long id;
 	private int cantidad;
 
+	// Relaciones con otras clases de dominio
+	@ManyToOne
+	@JoinColumn ( name = "articulo_fk" )
+	private Articulo articulo;
+	
+	@ManyToOne
+	@JoinColumn ( name = "pedido_fk" )
+	private Pedido pedido;
+	
 	// Setters y getters
 	public int getCantidad() {
 		return cantidad;
@@ -18,6 +41,30 @@ public class LineaPedido {
 
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public Articulo getArticulo() {
+		return articulo;
+	}
+
+	public void setArticulo(Articulo articulo) {
+		this.articulo = articulo;
+	}
+
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
 	}	
 	
 }
