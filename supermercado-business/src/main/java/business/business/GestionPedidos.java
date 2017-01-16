@@ -125,4 +125,32 @@ public class GestionPedidos implements IGestionaPedidos, IRealizaPedidos {
 		return pedidoPreparacion;
 	}
 
+	// Getters y setters. Necesarios para futuros tests unitarios con mockito para poder
+	// asignar un valor a los atributos DAO ya que no disponemos de la inyeccion del
+	// EJB.
+
+	public IPedidosDAO getPedidosDAO() {
+		return pedidosDAO;
+	}
+
+	public void setPedidosDAO(IPedidosDAO pedidosDAO) {
+		this.pedidosDAO = pedidosDAO;
+	}
+
+	public IUsuariosDAO getUsuariosDAO() {
+		return usuariosDAO;
+	}
+
+	public void setUsuariosDAO(IUsuariosDAO usuariosDAO) {
+		this.usuariosDAO = usuariosDAO;
+	}
+
+	public IArticulosDAO getArticulosDAO() {
+		return articulosDAO;
+	}
+
+	public void setArticulosDAO(IArticulosDAO articulosDAO) {
+		this.articulosDAO = articulosDAO;
+	}
+
 }

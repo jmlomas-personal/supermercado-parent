@@ -32,4 +32,16 @@ public class GestionUsuarios implements IRegistroUsuarios {
 		return usuariosDAO.addUsuario(usuarioAux);
 	}
 
+	// Getters y setters. Necesarios para futuros tests unitarios con mockito para poder
+	// asignar un valor a los atributos DAO ya que no disponemos de la inyeccion del
+	// EJB.
+
+	public IUsuariosDAO getUsuariosDAO() {
+		return usuariosDAO;
+	}
+
+	public void setUsuariosDAO(IUsuariosDAO usuariosDAO) {
+		this.usuariosDAO = usuariosDAO;
+	}
+
 }
