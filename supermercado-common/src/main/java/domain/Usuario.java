@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 /**
@@ -15,6 +17,9 @@ import javax.persistence.OneToMany;
  *
  */
 @Entity
+@NamedQueries({
+	@NamedQuery ( name = "usuariosPorDni", query = "SELECT u FROM USUARIO AS u WHERE u.dni = :dni" )
+})
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -24,6 +29,7 @@ public class Usuario implements Serializable {
 	@GeneratedValue
 	private String id;
 	private String nombre;
+	// Unique??
 	private String dni;
 	private String direccion;	
 	
