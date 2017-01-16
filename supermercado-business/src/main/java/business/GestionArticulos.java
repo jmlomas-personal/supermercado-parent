@@ -23,12 +23,16 @@ public class GestionArticulos implements IGestionaArticulos, IVisualizaArticulos
 	}
 
 	/**
-	 * Metodo que da de alta un articulo
+	 * Metodo que da de alta un articulo siempre y cuando no exista en la base de datos.
+	 * @return el articulo anyadido o  null si no se pudo anyadir pq ya existia 
 	 */
-	public void altaArticulo(Articulo articulo) {
-		articulosDAO.addArticulo(articulo);
+	public Articulo altaArticulo(Articulo articulo) {
+		Articulo auxArt = articulosDAO.getArticuloNombre(articulo.getNombre());
+		if(auxArt != null){
+			return articulosDAO.addArticulo(articulo);
+		}
+		return null;
 	}
-
 	/**
 	 * Metodo que da de baja un articulo
 	 * @return El articulo borrado. Null si no existia el articulo
@@ -53,7 +57,7 @@ public class GestionArticulos implements IGestionaArticulos, IVisualizaArticulos
 		}
 		return auxArt;
 	}
-	
+
 	/**
 	 * Metodo que retorna la lista de articulos completa
 	 * @return Lista de articulos

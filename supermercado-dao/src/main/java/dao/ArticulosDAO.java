@@ -33,5 +33,10 @@ public class ArticulosDAO extends GenericDAO<Articulo> implements IArticulosDAO 
 	public List<Articulo> listArticulos() {
 		return findAll();
 	}
+
+	public Articulo getArticuloNombre(String nombre) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

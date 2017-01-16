@@ -17,6 +17,8 @@ public interface IArticulosDAO {
 	
 	public Articulo getArticulo(String id);
 	
+	public Articulo getArticuloNombre(String nombre);
+	
 	public List<Articulo> listArticulos();
 	
 }
