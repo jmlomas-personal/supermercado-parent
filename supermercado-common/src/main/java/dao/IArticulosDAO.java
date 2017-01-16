@@ -2,8 +2,11 @@ package dao;
 
 import java.util.List;
 
+import javax.ejb.Local;
+
 import domain.Articulo;
 
+@Local
 public interface IArticulosDAO {
 
 	public Articulo addArticulo(Articulo articulo);

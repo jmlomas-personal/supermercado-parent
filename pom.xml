@@ -14,6 +14,7 @@
 		<module>supermercado-dao</module>
 		<module>supermercado-ear</module>
 		<module>supermercado-war</module>
+		<module>supermercado-pruebasIt</module>
 	</modules>
 	
 	<dependencies>

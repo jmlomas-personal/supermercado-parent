@@ -2,9 +2,12 @@ package dao;
 
 import java.util.List;
 
+import javax.ejb.Local;
+
 import domain.Pedido;
 import domain.EstadoPedido;
 
+@Local
 public interface IPedidosDAO {
 
 	public Pedido addPedido(Pedido pedido);

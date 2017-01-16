@@ -2,8 +2,11 @@ package dao;
 
 import java.util.List;
 
+import javax.ejb.Local;
+
 import domain.Usuario;
 
+@Local
 public interface IUsuariosDAO {
 
 	public Usuario addUsuario(Usuario usuario);
