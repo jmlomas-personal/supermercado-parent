@@ -65,7 +65,7 @@ public class GestionArticulos implements IGestionaArticulos, IVisualizaArticulos
 	 * @throws ArticuloNotFoundException 
 	 */
 	public Articulo actualizarStockArticulo(Articulo articulo, int unidades) throws ArticuloNotFoundException {
-		Articulo auxArt = articulosDAO.getArticulo(articulo.getId());
+		Articulo auxArt = articulosDAO.getArticulo(articulo.getNombre());
 		if(auxArt == null){
 			throw new ArticuloNotFoundException();
 		} else {
