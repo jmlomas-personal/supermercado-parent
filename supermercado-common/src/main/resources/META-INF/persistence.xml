@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence>
+
+	<!-- Para desplegar 		transaction-type="JTA"  -->
+	<!-- Para crear las tablas 	transaction-type="RESOURCE_LOCAL" -->
+	<persistence-unit name="SupermercadoPU" transaction-type="RESOURCE_LOCAL">
+
+		<!-- EclipseLink -->
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>		
+		<jta-data-source>jdbc/supermercado</jta-data-source>
+		
+		<class>domain.Articulo</class>
+		<class>domain.LineaPedido</class>
+		<class>domain.Pedido</class>
+		<class>domain.Usuario</class>
+		
+		<properties>
+			<property name="eclipselink.ddl-generation" value="create-or-extend-tables" />
+		</properties>
+		
+	</persistence-unit>
+</persistence>
