@@ -35,7 +35,7 @@ public class GestionArticulosTest {
 	 * El articulo no existe, no lanza excepcion y devuelve el articulo
 	 */
 	@Test
-	public void anyadeArticuloTest(){
+	public void altaArticuloTest(){
 		when(articulo.getNombre()).thenReturn("Tomates (1Kg)");
 		when(articulo.getPrecio()).thenReturn(2.0);
 		when(articulo.getUnidadesStock()).thenReturn(24);
@@ -56,7 +56,7 @@ public class GestionArticulosTest {
 	 * El articulo ya existe, lanza excepcion
 	 */
 	@Test
-	public void anyadeArticuloYaExisteTest(){
+	public void altaArticuloYaExisteTest(){
 		when(articulo.getNombre()).thenReturn("Tomates (1Kg)");
 		when(articulo.getPrecio()).thenReturn(2.0);
 		when(articulo.getUnidadesStock()).thenReturn(24);
