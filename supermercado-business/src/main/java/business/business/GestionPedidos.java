@@ -18,6 +18,7 @@ import common.domain.Usuario;
 import common.utils.StockInsuficienteException;
 import common.utils.UsuarioNoExisteException;
 
+// TODO Preguntar cuando acaba interaccion con el cliente
 @Stateful
 public class GestionPedidos implements IGestionaPedidos, IRealizaPedidos {
 

@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * Clase de dominio que representa
@@ -21,9 +22,9 @@ import javax.persistence.OneToMany;
  * @author Juan Manuel Lomas
  *
  */
-@Entity
+@Entity @Table(name = "PEDIDO")
 @NamedQueries({
-	@NamedQuery ( name = "pedidoPorEstadoyFecha", query = "SELECT p FROM PEDIDO AS p WHERE p.estado = :estado ORDER BY p.fecha DESC" )
+	@NamedQuery ( name = "pedidoPorEstadoyFecha", query = "SELECT p FROM Pedido p WHERE p.estado = :estado ORDER BY p.fecha DESC" )
 })
 public class Pedido implements Serializable {
 

@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * Clase de dominio que representa
@@ -16,9 +17,9 @@ import javax.persistence.OneToMany;
  * @author Juan Manuel Lomas
  *
  */
-@Entity
+@Entity @Table(name = "USUARIO")
 @NamedQueries({
-	@NamedQuery ( name = "usuariosPorDni", query = "SELECT u FROM USUARIO AS u WHERE u.dni = :dni" )
+	@NamedQuery ( name = "usuariosPorDni", query = "SELECT u FROM Usuario u WHERE u.dni = :dni" )
 })
 public class Usuario implements Serializable {
 

@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  * Clase de dominio que representa
@@ -14,7 +15,7 @@ import javax.persistence.ManyToOne;
  * @author Juan Manuel Lomas
  *
  */
-@Entity
+@Entity @Table(name = "LINEAPEDIDO")
 public class LineaPedido implements Serializable {
 
 	private static final long serialVersionUID = 1L;

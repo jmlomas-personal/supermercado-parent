@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Clase de dominio que representa
@@ -12,7 +13,7 @@ import javax.persistence.Id;
  * @author Juan Manuel Lomas
  *
  */
-@Entity
+@Entity @Table(name = "ARTICULO") 
 public class Articulo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
