@@ -3,6 +3,7 @@ package dao.dao;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
 import common.dao.IArticulosDAO;
 import common.domain.Articulo;
@@ -36,8 +37,12 @@ public class ArticulosDAO extends GenericDAO<Articulo> implements IArticulosDAO 
 	}
 
 	public Articulo getArticuloNombre(String nombre) {
-		// TODO Auto-generated method stub
-		return null;
+		Query q = em.createNamedQuery("articuloPorNombre");
+		q.setParameter("nombre", nombre);
+		q.setFirstResult(0);
+		q.setMaxResults(1);
+		
+		return (Articulo) q.getSingleResult();
 	}
 	
 }
