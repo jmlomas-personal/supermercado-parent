@@ -33,7 +33,6 @@ public class Usuario implements Serializable {
 	private String nombre;
 	@Column(unique = true)
 	private String dni;
-	private String dni;
 	private String direccion;	
 
 	// Relaciones con otras clases de dominio

@@ -31,6 +31,16 @@ public class Articulo implements Serializable {
 	private int unidadesStock;
 	private double precio;
 
+	public Articulo(){
+
+	}
+
+	public Articulo(String nombre, double precio, int unidadesStock){
+		this.nombre = nombre;
+		this.unidadesStock = unidadesStock;
+		this.precio = precio;
+	}
+
 	// Setters y getters
 	public String getNombre() {
 		return nombre;
