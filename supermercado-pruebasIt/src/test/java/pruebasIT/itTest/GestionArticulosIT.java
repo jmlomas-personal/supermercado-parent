@@ -49,14 +49,28 @@ public class GestionArticulosIT {
 	}
 
 	/**
-	 * En la base de datos esta el articulo Patatas 5kg por lo que deberia obtenerlo
+	 * Se inserta un articulo y se obtiene de la bd
+	 * @throws ArticuloYaExisteException 
+	 * @throws ArticuloNotFoundException 
 	 */
 	@Test
-	public void verArticuloTest(){
-		articulo = gestionArticulos.verArticulo("Patatas (5Kg)");
+	public void verArticuloTest() throws ArticuloYaExisteException, ArticuloNotFoundException{
+		articulo = new Articulo("ArticuloPrueba1", 999.9, 999);
 
-		assertTrue(articulo.getNombre().equals("Patatas (5Kg)"));
-		assertTrue(articulo.getPrecio() == 3.0);
+		try{
+			gestionArticulos.altaArticulo(articulo);
+
+			Articulo artAux = gestionArticulos.verArticulo("Patatas (5Kg)");
+
+			assertTrue(artAux.getNombre().equals("Patatas (5Kg)"));
+			assertTrue(artAux.getPrecio() == 999.9);
+
+			gestionArticulos.bajaArticulo(articulo);
+		} catch(ArticuloYaExisteException e) {
+			fail();
+		} catch(ArticuloNotFoundException e){
+			fail();
+		}
 	}
 
 	/**
@@ -70,23 +84,38 @@ public class GestionArticulosIT {
 	}
 
 	/**
-	 * Comprueba que la lista que devuelve no esta vacia y que contiene
-	 * al menos un articulo conocido (Patatas 5Kg)
+	 * Se inserta un articulo y se comprueba que se devuelve la lista
+	 * con el articulo introducido.
+	 * @throws ArticuloYaExisteException 
+	 * @throws ArticuloNotFoundException 
 	 */
 	@Test
-	public void verArticulosTest(){
-		articulos = gestionArticulos.verArticulos();
-		Articulo artAux = null;
+	public void verArticulosTest() throws ArticuloYaExisteException, ArticuloNotFoundException{
+		articulo = new Articulo("ArticuloPrueba1", 999.9, 999);
 
-		for (Articulo a : articulos){
-			if(a.getNombre().equals("Patatas (5Kg)")){
-				artAux = a;
+		try{
+			gestionArticulos.altaArticulo(articulo);
+
+			articulos = gestionArticulos.verArticulos();
+			Articulo artAux = null;
+
+			for (Articulo a : articulos){
+				if(a.getNombre().equals("ArticuloPrueba1")){
+					artAux = a;
+				}
 			}
-		}
 
-		assertTrue(articulos != null);
-		assertTrue(artAux.getNombre().equals("Patatas (5Kg)"));
-		assertTrue(artAux.getPrecio() == 3.0);
+			assertTrue(articulos != null);
+			assertTrue(artAux.getNombre().equals("ArticuloPrueba1"));
+			assertTrue(artAux.getPrecio() == 999.9);
+
+			gestionArticulos.bajaArticulo(articulo);
+
+		} catch(ArticuloYaExisteException e) {
+			fail();
+		} catch(ArticuloNotFoundException e){
+			fail();
+		}
 	}
 
 	/**
@@ -94,10 +123,7 @@ public class GestionArticulosIT {
 	 */
 	@Test
 	public void altaArticuloTest() throws ArticuloYaExisteException, ArticuloNotFoundException{
-		articulo = new Articulo();
-		articulo.setNombre("ArticuloPrueba1");
-		articulo.setPrecio(999.9);
-		articulo.setUnidadesStock(999);
+		articulo = new Articulo("ArticuloPrueba1", 999.9, 999);
 
 		gestionArticulos.altaArticulo(articulo);
 
@@ -117,10 +143,7 @@ public class GestionArticulosIT {
 	 */
 	@Test
 	public void altaArticuloYaExisteTest() throws ArticuloNotFoundException{
-		articulo = new Articulo();
-		articulo.setNombre("ArticuloPrueba1");
-		articulo.setPrecio(999.9);
-		articulo.setUnidadesStock(999);
+		articulo = new Articulo("ArticuloPrueba1", 999.9, 999);
 
 		try {
 			gestionArticulos.altaArticulo(articulo);
@@ -138,10 +161,7 @@ public class GestionArticulosIT {
 	 */
 	@Test
 	public void bajaArticuloTest() throws ArticuloYaExisteException, ArticuloNotFoundException{
-		articulo = new Articulo();
-		articulo.setNombre("ArticuloPrueba1");
-		articulo.setPrecio(999.9);
-		articulo.setUnidadesStock(999);
+		articulo = new Articulo("ArticuloPrueba1", 999.9, 999);
 
 		try{
 			gestionArticulos.altaArticulo(articulo);
@@ -158,10 +178,7 @@ public class GestionArticulosIT {
 	 */
 	@Test
 	public void bajaArticuloNoExisteTest() throws ArticuloNotFoundException{
-		articulo = new Articulo();
-		articulo.setNombre("ArticuloPrueba1");
-		articulo.setPrecio(999.9);
-		articulo.setUnidadesStock(999);
+		articulo = new Articulo("ArticuloPrueba1", 999.9, 999);
 
 		try{
 			gestionArticulos.bajaArticulo(articulo);
@@ -176,10 +193,7 @@ public class GestionArticulosIT {
 	 */
 	@Test
 	public void actualizaArticuloTest() throws ArticuloNotFoundException, ArticuloYaExisteException{
-		articulo = new Articulo();
-		articulo.setNombre("ArticuloPrueba1");
-		articulo.setPrecio(999.9);
-		articulo.setUnidadesStock(100);
+		articulo = new Articulo("ArticuloPrueba1", 999.9, 100);
 
 		try{
 			gestionArticulos.altaArticulo(articulo);
@@ -198,10 +212,7 @@ public class GestionArticulosIT {
 	 */
 	@Test
 	public void actualizaArticuloNoExisteTest(){
-		articulo = new Articulo();
-		articulo.setNombre("ArticuloPrueba1");
-		articulo.setPrecio(999.9);
-		articulo.setUnidadesStock(100);
+		articulo = new Articulo("ArticuloPrueba1", 999.9, 100);
 
 		try{
 			gestionArticulos.actualizarStockArticulo(articulo, 999);
