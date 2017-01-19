@@ -30,15 +30,17 @@ public class GestionArticulosIT {
 
 	@BeforeClass
 	public static void initContainer() throws Exception {
+		/*
 		Map properties = new HashMap();
 		properties.put(EJBContainer.MODULES, new File[]{new File("classes")});
 
 		properties.put("org.glassfish.ejb.embedded.glassfish.installation.root",
 				"/Users/MacbookAir/Documents/glassfish4/glassfish");
-		container = EJBContainer.createEJBContainer(properties);
+		*/
+		
+		container = EJBContainer.createEJBContainer(/*properties*/);
 
-		articulosDAO = (IArticulosDAO) container.getContext().lookup("java:global"
-				+ "/supermercado-dao-0.0.1-SNAPSHOT/ArticulosDAO");
+		articulosDAO = (IArticulosDAO) container.getContext().lookup("java:global/ejb-app/supermercado-dao-0_0_1-SNAPSHOT/ArticulosDAO");
 
 		//TODO necesario hacer el set manualmente??
 		gestionArticulos.setArticulosDAO(articulosDAO);
