@@ -1,9 +1,12 @@
 package common.business;
 
+import javax.ejb.Remote;
+
 import common.domain.Articulo;
 import common.utils.ArticuloNotFoundException;
 import common.utils.ArticuloYaExisteException;
 
+@Remote
 public abstract interface IGestionaArticulos {
 	
 	public Articulo altaArticulo(Articulo articulo) throws ArticuloYaExisteException;

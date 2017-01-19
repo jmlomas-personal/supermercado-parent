@@ -16,7 +16,7 @@ import common.utils.ArticuloYaExisteException;
 
 @Named(value = "articuloBean")
 @RequestScoped
-public class ArticuloBean implements Serializable{
+public class ArticuloBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	

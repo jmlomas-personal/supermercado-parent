@@ -25,18 +25,21 @@
 			<groupId>es.unican</groupId>
 			<artifactId>supermercado-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+			<type>jar</type>
 		</dependency>
 
 		<dependency>
 			<groupId>es.unican</groupId>
 			<artifactId>supermercado-dao</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+			<type>ejb</type>
 		</dependency>
 
 		<dependency>
 			<groupId>es.unican</groupId>
 			<artifactId>supermercado-business</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+			<type>ejb</type>
 		</dependency>
 
 		<dependency>
@@ -77,15 +80,15 @@
 							<groupId>es.unican</groupId>
 						</jarModule>
 
-						<jarModule>
+						<ejbModule>
 							<artifactId>supermercado-dao</artifactId>
 							<groupId>es.unican</groupId>
-						</jarModule>
+						</ejbModule>
 
-						<jarModule>
+						<ejbModule>
 							<artifactId>supermercado-business</artifactId>
 							<groupId>es.unican</groupId>
-						</jarModule>
+						</ejbModule>
 
 						<webModule>
 							<artifactId>supermercado-war</artifactId>
