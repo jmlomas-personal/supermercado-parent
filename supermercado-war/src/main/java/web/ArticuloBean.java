@@ -9,7 +9,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-import business.business.GestionArticulos;
 import common.business.IGestionaArticulosRemote;
 import common.business.IVisualizaArticulosRemote;
 import common.domain.Articulo;

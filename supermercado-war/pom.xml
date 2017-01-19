@@ -12,13 +12,6 @@
 	<packaging>war</packaging>
 
 	<dependencies>
-		<!-- Dependencia a business para las interfaces -->
-		<dependency>
-			<groupId>es.unican</groupId>
-			<artifactId>supermercado-business</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-
 		<!-- Dependencia a commons para las interfaces -->
 		<dependency>
 			<groupId>es.unican</groupId>
