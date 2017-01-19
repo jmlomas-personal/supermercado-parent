@@ -5,8 +5,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-import common.business.IGestionaArticulosLocal;
-import common.business.IGestionaArticulosRemote;
+import common.business.IGestionaArticulos;
 import common.business.IVisualizaArticulos;
 import common.dao.IArticulosDAO;
 import common.domain.Articulo;
@@ -14,7 +13,7 @@ import common.utils.ArticuloNotFoundException;
 import common.utils.ArticuloYaExisteException;
 
 @Stateless
-public class GestionArticulos implements IGestionaArticulosRemote, IGestionaArticulosLocal, IVisualizaArticulos {
+public class GestionArticulos implements IGestionaArticulos, IVisualizaArticulos {
 
 
 	@EJB
