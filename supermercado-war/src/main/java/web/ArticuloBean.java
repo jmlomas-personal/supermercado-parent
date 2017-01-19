@@ -10,6 +10,8 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import business.business.GestionArticulos;
+import common.business.IGestionaArticulosRemote;
+import common.business.IVisualizaArticulosRemote;
 import common.domain.Articulo;
 import common.utils.ArticuloYaExisteException;
 
@@ -25,7 +27,9 @@ public class ArticuloBean implements Serializable {
 	
 	// Si lo hiciesemos con un EJB de la capa de negocio
 	@EJB
-	private GestionArticulos articuloEJB;
+	private IGestionaArticulosRemote gestionaArticuloEJB;
+	@EJB
+	private IVisualizaArticulosRemote visualizaArticuloEJB;
 	
 	public ArticuloBean() {		
 	}
@@ -36,8 +40,8 @@ public class ArticuloBean implements Serializable {
 		
 		try{
 			
-			articulo = articuloEJB.altaArticulo(articulo);
-			articulos = articuloEJB.verArticulos();
+			articulo = gestionaArticuloEJB.altaArticulo(articulo);
+			articulos = visualizaArticuloEJB.verArticulos();
 			return "listaArticulos.xhtml";
 			
 		}catch(ArticuloYaExisteException e){

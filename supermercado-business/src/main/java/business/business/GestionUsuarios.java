@@ -3,13 +3,14 @@ package business.business;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-import common.business.IRegistroUsuarios;
+import common.business.IRegistroUsuariosLocal;
+import common.business.IRegistroUsuariosRemote;
 import common.dao.IUsuariosDAO;
 import common.domain.Usuario;
 import common.utils.UsuarioYaExisteException;
 
 @Stateless
-public class GestionUsuarios implements IRegistroUsuarios {
+public class GestionUsuarios implements IRegistroUsuariosLocal, IRegistroUsuariosRemote {
 
 	@EJB
 	private IUsuariosDAO usuariosDAO;

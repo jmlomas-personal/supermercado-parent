@@ -5,8 +5,8 @@ import java.sql.Date;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 
-import common.business.IGestionaPedidos;
-import common.business.IRealizaPedidos;
+import common.business.IRealizaPedidosLocal;
+import common.business.IRealizaPedidosRemote;
 import common.dao.IArticulosDAO;
 import common.dao.IPedidosDAO;
 import common.dao.IUsuariosDAO;
@@ -20,7 +20,7 @@ import common.utils.UsuarioNoExisteException;
 
 // TODO Preguntar cuando acaba interaccion con el cliente
 @Stateful
-public class GestionPedidos implements IGestionaPedidos, IRealizaPedidos {
+public class GestionPedidos implements IRealizaPedidosRemote, IRealizaPedidosLocal {
 
 	@EJB
 	private IPedidosDAO pedidosDAO;
