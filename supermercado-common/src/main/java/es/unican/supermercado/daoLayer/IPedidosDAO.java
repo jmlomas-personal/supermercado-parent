@@ -2,12 +2,9 @@ package es.unican.supermercado.daoLayer;
 
 import java.util.List;
 
-import javax.ejb.Remote;
-
 import es.unican.supermercado.businessLayer.entities.EstadoPedido;
 import es.unican.supermercado.businessLayer.entities.Pedido;
 
-@Remote
 public interface IPedidosDAO {
 
 	public Pedido addPedido(Pedido pedido);

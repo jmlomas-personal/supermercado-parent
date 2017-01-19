@@ -2,11 +2,8 @@ package es.unican.supermercado.daoLayer;
 
 import java.util.List;
 
-import javax.ejb.Remote;
-
 import es.unican.supermercado.businessLayer.entities.Usuario;
 
-@Remote
 public interface IUsuariosDAO {
 
 	public Usuario addUsuario(Usuario usuario);

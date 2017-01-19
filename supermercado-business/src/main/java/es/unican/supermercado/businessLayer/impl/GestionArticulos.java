@@ -11,15 +11,15 @@ import es.unican.supermercado.businessLayer.IVisualizaArticulosLocal;
 import es.unican.supermercado.businessLayer.IVisualizaArticulosRemote;
 import es.unican.supermercado.businessLayer.entities.Articulo;
 import es.unican.supermercado.daoLayer.IArticulosDAO;
+import es.unican.supermercado.daoLayer.IArticulosDAORemote;
 import es.unican.supermercado.utils.ArticuloNotFoundException;
 import es.unican.supermercado.utils.ArticuloYaExisteException;
 
 @Stateless
 public class GestionArticulos implements IGestionaArticulosRemote, IGestionaArticulosLocal, IVisualizaArticulosRemote, IVisualizaArticulosLocal {
 
-
 	@EJB
-	private IArticulosDAO articulosDAO;
+	private IArticulosDAORemote articulosDAO;
 
 	/**
 	 * Constructor de la clase
@@ -34,13 +34,16 @@ public class GestionArticulos implements IGestionaArticulosRemote, IGestionaArti
 	 * @throws ArticuloYaExisteException lanzada si ya existe un articulo con dicho
 	 * nombre
 	 */
+	@Override
 	public Articulo altaArticulo(Articulo articulo) throws ArticuloYaExisteException {
 		Articulo auxArt = articulosDAO.getArticuloNombre(articulo.getNombre());
+		
 		if(auxArt != null){
 			throw new ArticuloYaExisteException();
 		} else {
 			articulosDAO.addArticulo(articulo);
 		}
+		
 		return articulo;
 	}
 	/**
@@ -49,6 +52,7 @@ public class GestionArticulos implements IGestionaArticulosRemote, IGestionaArti
 	 * @throws ArticuloNotFoundException lanzada si no existe un articulo con dicho
 	 * nombre
 	 */
+	@Override
 	public Articulo bajaArticulo(Articulo articulo) throws ArticuloNotFoundException {
 		Articulo auxArt = articulosDAO.getArticuloNombre(articulo.getNombre());
 		if(auxArt == null){
@@ -66,6 +70,7 @@ public class GestionArticulos implements IGestionaArticulosRemote, IGestionaArti
 	 * no existe
 	 * @throws ArticuloNotFoundException 
 	 */
+	@Override
 	public Articulo actualizarStockArticulo(Articulo articulo, int unidades) throws ArticuloNotFoundException {
 		Articulo auxArt = articulosDAO.getArticulo(articulo.getNombre());
 		if(auxArt == null){
@@ -81,6 +86,7 @@ public class GestionArticulos implements IGestionaArticulosRemote, IGestionaArti
 	 * Metodo que retorna la lista de articulos completa
 	 * @return Lista de articulos
 	 */
+	@Override
 	public List<Articulo> verArticulos() {
 		return articulosDAO.listArticulos();
 	}
@@ -90,6 +96,7 @@ public class GestionArticulos implements IGestionaArticulosRemote, IGestionaArti
 	 * @return Articulo con el id indicado o Null si no existe un articulo
 	 * con dicho id
 	 */
+	@Override
 	public Articulo verArticulo(String nombre) {
 		return articulosDAO.getArticuloNombre(nombre);
 	}
@@ -103,7 +110,7 @@ public class GestionArticulos implements IGestionaArticulosRemote, IGestionaArti
 	}
 
 	public void setArticulosDAO(IArticulosDAO articulosDAO) {
-		this.articulosDAO = articulosDAO;
+		this.articulosDAO = (IArticulosDAORemote) articulosDAO;
 	}
 
 }

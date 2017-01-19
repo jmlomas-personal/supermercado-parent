@@ -1,8 +1,10 @@
 package es.unican.supermercado.web;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -14,32 +16,38 @@ import es.unican.supermercado.businessLayer.IVisualizaArticulosRemote;
 import es.unican.supermercado.businessLayer.entities.Articulo;
 import es.unican.supermercado.utils.ArticuloYaExisteException;
 
-@Named(value = "articuloBean")
+@Named
 @RequestScoped
 public class ArticuloBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	private Articulo articulo = new Articulo();
-	private List<Articulo> articulos;
+	private List<Articulo> listaArticulos = new ArrayList<Articulo>();
 	
 	// Si lo hiciesemos con un EJB de la capa de negocio
 	@EJB
-	private IGestionaArticulosRemote gestionaArticuloEJB;
-	@EJB
-	private IVisualizaArticulosRemote visualizaArticuloEJB;
+	private IGestionaArticulosRemote gestionaArticulo;
 	
-	public ArticuloBean() {		
+	@EJB
+	private IVisualizaArticulosRemote visualizaArticulo;
+	
+	public ArticuloBean() {				
+	}
+	
+	@PostConstruct
+	public void getArticulos() {
+		listaArticulos = visualizaArticulo.verArticulos();
 	}
 
 	public String altaArticulo() {
 		
-		 FacesContext context = FacesContext.getCurrentInstance();  
+		FacesContext context = FacesContext.getCurrentInstance();  
 		
 		try{
 			
-			articulo = gestionaArticuloEJB.altaArticulo(articulo);
-			articulos = visualizaArticuloEJB.verArticulos();
+			articulo = gestionaArticulo.altaArticulo(articulo);
+			listaArticulos = visualizaArticulo.verArticulos();
 			return "listaArticulos.xhtml";
 			
 		}catch(ArticuloYaExisteException e){
@@ -49,7 +57,6 @@ public class ArticuloBean implements Serializable {
 		
 	}
 	
-	
 	public Articulo getArticulo() {
 		return articulo;
 	}
@@ -58,12 +65,12 @@ public class ArticuloBean implements Serializable {
 		this.articulo = articulo;
 	}
 
-	public List<Articulo> getArticulos() {
-		return articulos;
+	public List<Articulo> getListaArticulos() {
+		return listaArticulos;
 	}
 
-	public void setArticulos(List<Articulo> articulos) {
-		this.articulos = articulos;
+	public void setListaArticulos(List<Articulo> listaArticulos) {
+		this.listaArticulos = listaArticulos;
 	}
 
 }
