@@ -25,7 +25,7 @@
 			<groupId>es.unican</groupId>
 			<artifactId>supermercado-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-			<type>jar</type>
+			<type>jar</type>			
 		</dependency>
 
 		<dependency>
@@ -78,6 +78,7 @@
 						<jarModule>
 							<artifactId>supermercado-common</artifactId>
 							<groupId>es.unican</groupId>
+							<bundleDir>lib</bundleDir>
 						</jarModule>
 
 						<ejbModule>

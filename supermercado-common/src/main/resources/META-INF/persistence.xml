@@ -7,16 +7,15 @@
 
 	<!-- Para desplegar transaction-type="JTA" -->
 	<!-- Para crear las tablas transaction-type="RESOURCE_LOCAL" -->
-	<persistence-unit name="SupermercadoPU"
-		transaction-type="JTA">
+	<persistence-unit name="SupermercadoPU" transaction-type="JTA">
 
 		<!-- EclipseLink -->
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<jta-data-source>jdbc/supermercado</jta-data-source>
 
-		<class>common.domain.Articulo</class>
-		<class>common.domain.LineaPedido</class>
+		<class>common.domain.Articulo</class>		
 		<class>common.domain.Pedido</class>
+		<class>common.domain.LineaPedido</class>
 		<class>common.domain.Usuario</class>
 
 		<properties>
