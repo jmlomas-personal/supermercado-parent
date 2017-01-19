@@ -2,15 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<parent>
 		<artifactId>supermercado-parent</artifactId>
 		<groupId>es.unican</groupId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<groupId>es.unican</groupId>
 	<artifactId>supermercado-ear</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>ear</packaging>
 
 	<name>supermercado-ear</name>
@@ -19,26 +18,86 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
+	<!-- Dependencias -->
+	<dependencies>
+	
+		<dependency>
+			<groupId>es.unican</groupId>
+			<artifactId>supermercado-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.unican</groupId>
+			<artifactId>supermercado-dao</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.unican</groupId>
+			<artifactId>supermercado-business</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>es.unican</groupId>
+			<artifactId>supermercado-war</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<type>war</type>
+		</dependency>
+
+	</dependencies>
+
 	<build>
 		<plugins>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
+				<version>3.6.1</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-ear-plugin</artifactId>
-				<version>2.8</version>
+				<version>2.10.1</version>
+
 				<configuration>
-					<version>6</version>
-					<defaultLibBundleDir>lib</defaultLibBundleDir>
+					<version>7</version>
+					<defaultJavaBundleDir>lib</defaultJavaBundleDir>
+
+					<modules>
+
+						<jarModule>
+							<artifactId>supermercado-common</artifactId>
+							<groupId>es.unican</groupId>
+						</jarModule>
+
+						<jarModule>
+							<artifactId>supermercado-dao</artifactId>
+							<groupId>es.unican</groupId>
+						</jarModule>
+
+						<jarModule>
+							<artifactId>supermercado-business</artifactId>
+							<groupId>es.unican</groupId>
+						</jarModule>
+
+						<webModule>
+							<artifactId>supermercado-war</artifactId>
+							<groupId>es.unican</groupId>
+						</webModule>
+
+					</modules>
+
 				</configuration>
+
 			</plugin>
+
 		</plugins>
 	</build>
 
