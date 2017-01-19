@@ -44,7 +44,7 @@
 
 		<dependency>
 			<groupId>es.unican</groupId>
-			<artifactId>supermercado-war</artifactId>
+			<artifactId>supermercado-web</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 			<type>war</type>
 		</dependency>
@@ -53,11 +53,10 @@
 
 	<build>
 		<plugins>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.6.1</version>
+				<version>3.1</version>
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
@@ -91,7 +90,7 @@
 						</ejbModule>
 
 						<webModule>
-							<artifactId>supermercado-war</artifactId>
+							<artifactId>supermercado-web</artifactId>
 							<groupId>es.unican</groupId>
 						</webModule>
 

@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence xmlns="http://java.sun.com/xml/ns/persistence"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
- http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
-	version="2.0">
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 
 	<!-- Para desplegar transaction-type="JTA" -->
 	<!-- Para crear las tablas transaction-type="RESOURCE_LOCAL" -->
-	<persistence-unit name="SupermercadoPU" transaction-type="JTA">
+	<persistence-unit name="SupermercadoPU"
+		transaction-type="JTA">
 
 		<!-- EclipseLink -->
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<jta-data-source>jdbc/supermercado</jta-data-source>
 
-		<class>common.domain.Articulo</class>		
-		<class>common.domain.Pedido</class>
-		<class>common.domain.LineaPedido</class>
-		<class>common.domain.Usuario</class>
+		<class>es.unican.supermercado.businessLayer.entities.Articulo</class>
+		<class>es.unican.supermercado.businessLayer.entities.Pedido</class>
+		<class>es.unican.supermercado.businessLayer.entities.LineaPedido</class>
+		<class>es.unican.supermercado.businessLayer.entities.Usuario</class>
 
 		<properties>
 			<property name="eclipselink.ddl-generation" value="create-or-extend-tables" />
