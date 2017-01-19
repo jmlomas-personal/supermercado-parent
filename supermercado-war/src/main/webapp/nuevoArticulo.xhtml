@@ -15,20 +15,20 @@
 				<h:panelGrid columns="3">
 					
 					<h:outputLabel value="Nombre: " />
-					<h:inputText id="nombre" value="#{articuloController.articulo.nombre}" required="true" requiredMessage="Se ha de dar un nombre"/>
+					<h:inputText id="nombre" value="#{articuloBean.articulo.nombre}" required="true" requiredMessage="Se ha de dar un nombre"/>
 					<h:message for="nombre"/>
 					
 					<h:outputLabel value="Unidades:" />
-					<h:inputText id="unidadesStock" value="#{articuloController.articulo.unidadesStock}" required="true" requiredMessage="Se han de indicar las unidades"/>
+					<h:inputText id="unidadesStock" value="#{articuloBean.articulo.unidadesStock}" required="true" requiredMessage="Se han de indicar las unidades"/>
 					<h:message for="unidadesStock"/>
 					
 					<h:outputLabel value="Precio: " />
-					<h:inputText id="precio" value="#{articuloController.articulo.precio}" required="true" converter="euroConverter" requiredMessage="Se ha de indicar el precio"/>
+					<h:inputText id="precio" value="#{articuloBean.articulo.precio}" required="true" requiredMessage="Se ha de indicar el precio"/>
 					<h:message for="precio"/>
 	
 				</h:panelGrid>
 				
-				<h:commandButton value="Crear Articulo" action="#{articuloController.altaArticulo}" />
+				<h:commandButton value="Crear Articulo" action="#{articuloBean.altaArticulo}" />
 			</h:form>
 		<hr />
 		

@@ -2,11 +2,11 @@ package common.dao;
 
 import java.util.List;
 
-import javax.ejb.Local;
+import javax.ejb.Remote;
 
 import common.domain.Articulo;
 
-@Local
+@Remote
 public interface IArticulosDAO {
 
 	public Articulo addArticulo(Articulo articulo);

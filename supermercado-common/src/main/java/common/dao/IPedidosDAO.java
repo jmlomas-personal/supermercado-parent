@@ -2,12 +2,12 @@ package common.dao;
 
 import java.util.List;
 
-import javax.ejb.Local;
+import javax.ejb.Remote;
 
 import common.domain.EstadoPedido;
 import common.domain.Pedido;
 
-@Local
+@Remote
 public interface IPedidosDAO {
 
 	public Pedido addPedido(Pedido pedido);

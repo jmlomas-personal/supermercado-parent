@@ -9,7 +9,7 @@
 <h:body>
 	<h1>Articulos en inventario</h1>
 	<hr />
-		<h:dataTable value="#{articuloController.articulos}" var="articulo">
+		<h:dataTable value="#{articuloBean.articulos}" var="articulo">
 		
 			<h:column>
 				<f:facet name="header">
@@ -29,7 +29,9 @@
 				<f:facet name="header">
 					<h:outputText value="Precio" />
 				</f:facet>
-				<h:outputText value="#{articulo.precio}" />
+				<h:outputText value="#{articulo.precio}" >
+					<f:converter converterId="euroConverter" />
+				</h:outputText>
 			</h:column>
 			
 		</h:dataTable>

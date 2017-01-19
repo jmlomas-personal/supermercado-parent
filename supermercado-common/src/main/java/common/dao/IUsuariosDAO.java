@@ -2,11 +2,11 @@ package common.dao;
 
 import java.util.List;
 
-import javax.ejb.Local;
+import javax.ejb.Remote;
 
 import common.domain.Usuario;
 
-@Local
+@Remote
 public interface IUsuariosDAO {
 
 	public Usuario addUsuario(Usuario usuario);
