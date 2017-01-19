@@ -1,13 +1,68 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>es.unican</groupId>
-    <artifactId>supermercado-parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-  </parent>
-  <artifactId>supermercado-war</artifactId>
-  <packaging>war</packaging>
-  <properties>
-    <failOnMissingWebXml>false</failOnMissingWebXml>
-  </properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.unican</groupId>
+		<artifactId>supermercado-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>supermercado-war</artifactId>
+	<packaging>war</packaging>
+
+	<dependencies>
+		<!-- Dependencia a business para las interfaces -->
+		<dependency>
+			<groupId>es.unican</groupId>
+            <artifactId>supermercado-business</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		<!-- Dependencia a commons para las interfaces -->
+		<dependency>
+			<groupId>es.unican</groupId>
+            <artifactId>supermercado-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+	</dependencies>
+
+	<build>
+		<plugins>
+		
+			<!-- Módulo que permite desplegar automáticamente en Glassfish -->
+			<plugin>
+				<groupId>org.glassfish.maven.plugin</groupId>
+				<artifactId>maven-glassfish-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<!-- Mandatory -->
+					<glassfishDirectory>${local.glassfish.home}</glassfishDirectory>
+					<user>admin</user>
+					<adminPassword>13579qwerty</adminPassword>
+					<!-- Mandatory -->
+					<domain>
+						<name>domain1</name>
+						<host>192.168.1.10</host> <!-- Local -->
+						<!-- <host>pupp3t.asuscomm.com</host> --> <!-- Remoto -->
+						<httpPort>6080</httpPort>
+						<adminPort>6048</adminPort>
+					</domain>
+					<!-- Mandatory -->
+					<components>
+						<component>
+							<name>${project.artifactId}</name>
+							<artifact>target/${project.build.finalName}.war</artifact>
+						</component>
+					</components>
+					<debug>true</debug>
+					<terse>false</terse>
+					<echo>true</echo>
+				</configuration>
+			</plugin>
+			
+		</plugins>
+	</build>
+	
 </project>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<title>Nuevo Articulo</title>
+	</h:head>
+	
+	<h:body>
+		<h1>Dar de alta un nuevo articulo</h1>
+		
+		<hr />
+			<h:form>
+				<h:panelGrid columns="3">
+					
+					<h:outputLabel value="Nombre: " />
+					<h:inputText id="nombre" value="#{articuloController.articulo.nombre}" required="true" requiredMessage="Se ha de dar un nombre"/>
+					<h:message for="nombre"/>
+					
+					<h:outputLabel value="Unidades:" />
+					<h:inputText id="unidadesStock" value="#{articuloController.articulo.unidadesStock}" required="true" requiredMessage="Se han de indicar las unidades"/>
+					<h:message for="unidadesStock"/>
+					
+					<h:outputLabel value="Precio: " />
+					<h:inputText id="precio" value="#{articuloController.articulo.precio}" required="true" converter="euroConverter" requiredMessage="Se ha de indicar el precio"/>
+					<h:message for="precio"/>
+	
+				</h:panelGrid>
+				
+				<h:commandButton value="Crear Articulo" action="#{articuloController.altaArticulo}" />
+			</h:form>
+		<hr />
+		
+	</h:body>
+</html>
