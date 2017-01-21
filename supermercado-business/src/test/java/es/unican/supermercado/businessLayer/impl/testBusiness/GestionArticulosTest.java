@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import es.unican.supermercado.businessLayer.entities.Articulo;
 import es.unican.supermercado.businessLayer.impl.GestionArticulos;
-import es.unican.supermercado.daoLayer.IArticulosDAO;
+import es.unican.supermercado.daoLayer.IArticulosDAORemote;
 import es.unican.supermercado.utils.ArticuloNotFoundException;
 import es.unican.supermercado.utils.ArticuloYaExisteException;
 
@@ -19,7 +19,7 @@ import java.util.List;
 public class GestionArticulosTest {
 
 	private static GestionArticulos gestionArticulos;
-	private static IArticulosDAO articulosDAO;
+	private static IArticulosDAORemote articulosDAO;
 	private static Articulo articulo, articulo2;
 	private static List<Articulo> articulos;
 
@@ -28,7 +28,7 @@ public class GestionArticulosTest {
 		gestionArticulos = new GestionArticulos();
 		articulo = mock(Articulo.class);
 		articulo2 = mock(Articulo.class);
-		articulosDAO = mock(IArticulosDAO.class);
+		articulosDAO = mock(IArticulosDAORemote.class);
 	}
 
 	/**
