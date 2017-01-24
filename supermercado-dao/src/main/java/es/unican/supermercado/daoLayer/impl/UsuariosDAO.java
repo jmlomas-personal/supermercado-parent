@@ -34,7 +34,7 @@ public class UsuariosDAO extends GenericDAO<Usuario> implements IUsuariosDAORemo
 	}
 
 	@Override
-	public Usuario getUsuario(String id) {
+	public Usuario getUsuario(long id) {
 		return find(id);
 	}
 

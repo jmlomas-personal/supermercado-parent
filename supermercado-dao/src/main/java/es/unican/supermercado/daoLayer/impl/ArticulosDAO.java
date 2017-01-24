@@ -34,7 +34,7 @@ public class ArticulosDAO extends GenericDAO<Articulo> implements IArticulosDAOR
 	}
 
 	@Override
-	public Articulo getArticulo(String id) {
+	public Articulo getArticulo(long id) {
 		return find(id);
 	}
 

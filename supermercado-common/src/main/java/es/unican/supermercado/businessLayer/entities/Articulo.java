@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -25,8 +26,8 @@ public class Articulo implements Serializable {
 
 	// Atributos
 	@Id
-	@GeneratedValue
-	private String id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 	private String nombre;
 	private int unidadesStock;
 	private double precio;
@@ -66,11 +67,11 @@ public class Articulo implements Serializable {
 		this.precio = precio;
 	}
 
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

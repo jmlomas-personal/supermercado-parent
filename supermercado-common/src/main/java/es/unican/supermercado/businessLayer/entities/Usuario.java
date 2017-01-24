@@ -3,9 +3,9 @@ package es.unican.supermercado.businessLayer.entities;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -28,17 +28,26 @@ public class Usuario implements Serializable {
 
 	// Atributos
 	@Id
-	@GeneratedValue
-	private String id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 	private String nombre;
-	@Column(unique = true)
 	private String dni;
-	private String direccion;	
+	private String direccion;
 
 	// Relaciones con otras clases de dominio
 	@OneToMany( mappedBy = "usuario" )
 	private List<Pedido> pedidos;	
 
+	public Usuario(){
+		
+	}
+
+	public Usuario(String nombre, String dni, String direccion){
+		this.nombre = nombre;
+		this.dni = dni;
+		this.direccion = direccion;
+	}
+	
 	// Getters y setters
 	public String getNombre() {
 		return nombre;
@@ -64,11 +73,11 @@ public class Usuario implements Serializable {
 		this.direccion = direccion;
 	}
 
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

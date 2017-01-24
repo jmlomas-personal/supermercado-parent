@@ -12,7 +12,7 @@ public interface IArticulosDAO {
 	
 	public Articulo updateArticulo(Articulo articulo);
 	
-	public Articulo getArticulo(String id);
+	public Articulo getArticulo(long id);
 	
 	public Articulo getArticuloNombre(String nombre);
 	

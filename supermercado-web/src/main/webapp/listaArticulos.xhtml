@@ -4,12 +4,14 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-	<title>Listados de articulos</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="theme" name="css/main.css" />
+	<title>Listados de articulos</title>	
 </h:head>
 <h:body>
-	<h1>Articulos en inventario</h1>
+	<h1>#{msg['article_list']}</h1>
 	<hr />
-		<h:dataTable value="#{articuloBean.listaArticulos}" var="articulo">
+		<h:dataTable value="#{articuloBean.listaArticulos}" var="articulo" class="pure-table">
 		
 			<h:column>
 				<f:facet name="header">
@@ -37,7 +39,7 @@
 		</h:dataTable>
 		
 		<h:form>
-			<h:link outcome="nuevoArticulo.xhtml" value="Dar de alta un nuevo Articulo" />
+			<h:link outcome="nuevoArticulo.xhtml" value="#{msg['new_article']}" />
 		</h:form>
 	<hr />
 </h:body>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="theme" name="css/main.css" />
+	<title>#{msg['register_title']}</title>
+</h:head>
+
+<h:body>
+	<hr />
+	<center>
+		<h:form class="pure-form pure-form pure-form-aligned">
+
+			<fieldset>
+				<h:graphicImage library="theme" name="img/data.png" />
+				<legend>#{msg['register_head']}</legend>
+
+				<div class="pure-control-group">
+					<h:outputLabel value="#{msg['register_input_nombre']} " />
+					<h:inputText id="nombre" value="#{usuarioBean.usuario.nombre}"
+						required="true"
+						requiredMessage="#{msg['register_input_nombre_request']}" />
+					<h:message for="nombre" class="pure-form-message" />
+				</div>
+				<div class="pure-control-group">
+					<h:outputLabel value="#{msg['register_input_dni']} " />
+					<h:inputText id="dni" value="#{usuarioBean.usuario.dni}"
+						required="true"
+						requiredMessage="#{msg['register_input_dni_request']}" />
+					<h:message for="dni" class="pure-form-message" />
+				</div>
+				<div class="pure-control-group">
+					<h:outputLabel value="#{msg['register_input_direccion']}  " />
+					<h:inputText id="direccion"
+						value="#{usuarioBean.usuario.direccion}" required="true"
+						requiredMessage="#{msg['register_input_direccion_request']}" />
+					<h:message for="direccion" class="pure-form-message" />
+				</div>
+				<div class="pure-controls">
+					<h:commandButton value="#{msg['register_option']}"
+						action="#{usuarioBean.altaUsuario}"
+						class="pure-button pure-button-primary" />
+				</div>
+			</fieldset>
+
+		</h:form>
+
+		<hr />
+
+		<h:form>
+			<h:link outcome="login.xhtml" value="#{msg['register_login_option']}" />
+		</h:form>
+
+		<span class="pure-form-message">#{usuarioBean.error}</span>
+	</center>
+</h:body>
+</html>

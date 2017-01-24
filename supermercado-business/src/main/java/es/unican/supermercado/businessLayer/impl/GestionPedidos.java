@@ -64,7 +64,7 @@ public class GestionPedidos implements IRealizaPedidosLocal, IRealizaPedidosRemo
 	 * con dicho id
 	 */
 	@Override
-	public Pedido entregarPedido(String id) {
+	public Pedido entregarPedido(long id) {
 		Pedido pedido = pedidosDAO.getPedido(id);
 		if(pedido != null){
 			pedido.setEstado(EstadoPedido.ENTREGADO);
@@ -80,7 +80,7 @@ public class GestionPedidos implements IRealizaPedidosLocal, IRealizaPedidosRemo
 	 */
 	@Override
 	public void crearPedido(String dni) throws UsuarioNoExisteException {
-		Usuario usuario = usuariosDAO.getUsuario(dni);
+		Usuario usuario = usuariosDAO.getUsuarioDni(dni);
 		if(usuario == null){
 			throw new UsuarioNoExisteException();
 		}

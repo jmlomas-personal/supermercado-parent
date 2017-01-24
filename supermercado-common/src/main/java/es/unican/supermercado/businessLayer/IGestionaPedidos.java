@@ -6,6 +6,6 @@ public abstract interface IGestionaPedidos {
 
 	public Pedido procesarPedido();
 
-	public Pedido entregarPedido(String id);
+	public Pedido entregarPedido(long id);
 	
 }

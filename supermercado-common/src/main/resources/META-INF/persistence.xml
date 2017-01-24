@@ -5,21 +5,22 @@
 
 	<!-- Para desplegar transaction-type="JTA" -->
 	<!-- Para crear las tablas transaction-type="RESOURCE_LOCAL" -->
-	<persistence-unit name="SupermercadoPU"
-		transaction-type="JTA">
+	<persistence-unit name="SupermercadoPU" transaction-type="JTA">				
 
 		<!-- EclipseLink -->
-		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>		
 		<jta-data-source>jdbc/supermercado</jta-data-source>
-
+		
 		<class>es.unican.supermercado.businessLayer.entities.Articulo</class>
 		<class>es.unican.supermercado.businessLayer.entities.Pedido</class>
 		<class>es.unican.supermercado.businessLayer.entities.LineaPedido</class>
 		<class>es.unican.supermercado.businessLayer.entities.Usuario</class>
 
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>
+
 		<properties>
 			<property name="eclipselink.ddl-generation" value="create-or-extend-tables" />
-		</properties>
+		</properties>	
 
 	</persistence-unit>
 </persistence>

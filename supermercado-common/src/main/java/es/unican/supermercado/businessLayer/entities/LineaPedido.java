@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,8 +23,8 @@ public class LineaPedido implements Serializable {
 	
 	// Atributos
 	@Id
-	@GeneratedValue
-	private String id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 	private int cantidad;
 
 	// Relaciones con otras clases de dominio
@@ -44,11 +45,11 @@ public class LineaPedido implements Serializable {
 		this.cantidad = cantidad;
 	}
 
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="theme" name="css/main.css" />
+	<title>#{msg['login_title']}</title>
+</h:head>
+
+<h:body>
+	<hr />
+	<center>
+
+		<h:form class="pure-form pure-form-stacked">
+
+			<fieldset>
+				<h:graphicImage library="theme" name="img/system.png" />
+				<legend>#{msg['login_head']}</legend>
+
+				<h:outputLabel value="#{msg['login_input_dni']} " />
+				<h:inputText id="nombre" value="#{usuarioBean.dni}" required="true"
+					requiredMessage="#{msg['login_input_dni_request']} " />
+				<h:message for="nombre" class="pure-form-message" />
+
+				<h:commandButton value="#{msg['login_option']}"
+					action="#{usuarioBean.login}"
+					class="pure-button pure-button-primary" />
+
+			</fieldset>
+
+		</h:form>
+
+		<hr />
+
+		<h:form>
+			<h:link outcome="registroUsuario.xhtml" value="#{msg['login_register_option']}" />
+		</h:form>
+
+		<span class="pure-form-message">#{usuarioBean.error}</span>
+
+	</center>
+</h:body>
+</html>

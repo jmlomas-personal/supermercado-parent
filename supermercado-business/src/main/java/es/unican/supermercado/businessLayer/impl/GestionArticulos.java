@@ -72,7 +72,7 @@ public class GestionArticulos implements IGestionaArticulosRemote, IGestionaArti
 	 */
 	@Override
 	public Articulo actualizarStockArticulo(Articulo articulo, int unidades) throws ArticuloNotFoundException {
-		Articulo auxArt = articulosDAO.getArticulo(articulo.getNombre());
+		Articulo auxArt = articulosDAO.getArticuloNombre(articulo.getNombre());
 		if(auxArt == null){
 			throw new ArticuloNotFoundException();
 		} else {

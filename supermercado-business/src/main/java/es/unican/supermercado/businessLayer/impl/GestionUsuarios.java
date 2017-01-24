@@ -8,6 +8,7 @@ import es.unican.supermercado.businessLayer.IRegistroUsuariosRemote;
 import es.unican.supermercado.businessLayer.entities.Usuario;
 import es.unican.supermercado.daoLayer.IUsuariosDAO;
 import es.unican.supermercado.daoLayer.IUsuariosDAORemote;
+import es.unican.supermercado.utils.UsuarioNoExisteException;
 import es.unican.supermercado.utils.UsuarioYaExisteException;
 
 @Stateless
@@ -32,6 +33,7 @@ public class GestionUsuarios implements IRegistroUsuariosLocal, IRegistroUsuario
 		if(usuarioAux != null){
 			throw new UsuarioYaExisteException();
 		}
+		
 		return usuariosDAO.addUsuario(usuarioAux);
 	}
 
@@ -45,6 +47,17 @@ public class GestionUsuarios implements IRegistroUsuariosLocal, IRegistroUsuario
 
 	public void setUsuariosDAO(IUsuariosDAO usuariosDAO) {
 		this.usuariosDAO = (IUsuariosDAORemote) usuariosDAO;
+	}
+
+	@Override
+	public Usuario dameUsuario(String dni) throws UsuarioNoExisteException {
+		Usuario usuarioAux = usuariosDAO.getUsuarioDni(dni);
+
+		if(usuarioAux == null){
+			throw new UsuarioNoExisteException();
+		}
+		
+		return usuarioAux;
 	}
 
 }

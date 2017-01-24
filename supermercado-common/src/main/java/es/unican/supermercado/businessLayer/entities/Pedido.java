@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -32,8 +33,8 @@ public class Pedido implements Serializable {
 	
 	// Atributos
 	@Id
-	@GeneratedValue
-	private String id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 	
 	@Enumerated(EnumType.STRING)
 	private EstadoPedido estado;
@@ -49,11 +50,11 @@ public class Pedido implements Serializable {
 	private List<LineaPedido> lineasPedido;	
 	
 	// Getters y setters
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 	
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	

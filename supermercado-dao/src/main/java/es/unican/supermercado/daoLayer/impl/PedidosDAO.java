@@ -35,7 +35,7 @@ public class PedidosDAO extends GenericDAO<Pedido> implements IPedidosDAORemote,
 	}
 
 	@Override
-	public Pedido getPedido(String id) {
+	public Pedido getPedido(long id) {
 		return find(id);
 	}
 

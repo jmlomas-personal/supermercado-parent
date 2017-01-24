@@ -13,7 +13,7 @@ public interface IPedidosDAO {
 	
 	public Pedido updatePedido(Pedido pedido);
 	
-	public Pedido getPedido(String id);
+	public Pedido getPedido(long id);
 	
 	public Pedido getUltimoPedidoPendiente(EstadoPedido estado);
 	
