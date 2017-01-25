@@ -34,7 +34,7 @@ public class Pedido implements Serializable {
 	// Atributos
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	
 	@Enumerated(EnumType.STRING)
 	private EstadoPedido estado;
@@ -50,11 +50,11 @@ public class Pedido implements Serializable {
 	private List<LineaPedido> lineasPedido;	
 	
 	// Getters y setters
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	

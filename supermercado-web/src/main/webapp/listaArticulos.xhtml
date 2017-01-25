@@ -10,6 +10,7 @@
 </h:head>
 <h:body>
 	<h1>#{msg['article_list']}</h1>
+	<span>Usuario: #{usuarioBean.usuario.nombre}</span>
 	<hr />
 		<h:dataTable value="#{articuloBean.listaArticulos}" var="articulo" class="pure-table">
 		
@@ -32,7 +33,7 @@
 					<h:outputText value="Precio" />
 				</f:facet>
 				<h:outputText value="#{articulo.precio}" >
-					<f:converter converterId="euroConverter" />
+					<f:converter converterId="priceConverter" />
 				</h:outputText>
 			</h:column>
 			
@@ -41,6 +42,9 @@
 		<h:form>
 			<h:link outcome="nuevoArticulo.xhtml" value="#{msg['new_article']}" />
 		</h:form>
+				
 	<hr />
+	
+	<h:messages />
 </h:body>
 </html>

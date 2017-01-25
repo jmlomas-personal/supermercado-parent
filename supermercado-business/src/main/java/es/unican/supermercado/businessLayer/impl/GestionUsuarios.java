@@ -34,7 +34,7 @@ public class GestionUsuarios implements IRegistroUsuariosLocal, IRegistroUsuario
 			throw new UsuarioYaExisteException();
 		}
 		
-		return usuariosDAO.addUsuario(usuarioAux);
+		return usuariosDAO.addUsuario(usuario);
 	}
 
 	// Getters y setters. Necesarios para futuros tests unitarios con mockito para poder

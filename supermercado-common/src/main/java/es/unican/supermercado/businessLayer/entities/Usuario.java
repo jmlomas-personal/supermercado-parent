@@ -29,7 +29,7 @@ public class Usuario implements Serializable {
 	// Atributos
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	private String nombre;
 	private String dni;
 	private String direccion;
@@ -73,11 +73,11 @@ public class Usuario implements Serializable {
 		this.direccion = direccion;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

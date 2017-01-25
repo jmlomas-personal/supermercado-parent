@@ -27,7 +27,7 @@ public class Articulo implements Serializable {
 	// Atributos
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	private String nombre;
 	private int unidadesStock;
 	private double precio;
@@ -67,11 +67,11 @@ public class Articulo implements Serializable {
 		this.precio = precio;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

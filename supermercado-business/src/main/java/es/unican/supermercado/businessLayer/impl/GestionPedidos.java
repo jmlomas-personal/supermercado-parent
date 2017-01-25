@@ -64,7 +64,7 @@ public class GestionPedidos implements IRealizaPedidosLocal, IRealizaPedidosRemo
 	 * con dicho id
 	 */
 	@Override
-	public Pedido entregarPedido(long id) {
+	public Pedido entregarPedido(Long id) {
 		Pedido pedido = pedidosDAO.getPedido(id);
 		if(pedido != null){
 			pedido.setEstado(EstadoPedido.ENTREGADO);

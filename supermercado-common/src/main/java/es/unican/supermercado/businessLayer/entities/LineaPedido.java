@@ -24,7 +24,7 @@ public class LineaPedido implements Serializable {
 	// Atributos
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	private int cantidad;
 
 	// Relaciones con otras clases de dominio
@@ -45,11 +45,11 @@ public class LineaPedido implements Serializable {
 		this.cantidad = cantidad;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

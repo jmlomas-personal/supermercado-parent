@@ -9,6 +9,7 @@ import javax.persistence.Query;
 import es.unican.supermercado.businessLayer.entities.Usuario;
 import es.unican.supermercado.daoLayer.IUsuariosDAOLocal;
 import es.unican.supermercado.daoLayer.IUsuariosDAORemote;
+import java.util.logging.Logger;
 
 /**
  * Clase DAO para persistir usuarios
@@ -18,6 +19,8 @@ import es.unican.supermercado.daoLayer.IUsuariosDAORemote;
 @Stateless
 public class UsuariosDAO extends GenericDAO<Usuario> implements IUsuariosDAORemote, IUsuariosDAOLocal {
 
+	Logger logger = Logger.getLogger(getClass().getName());
+	
 	@Override
 	public Usuario addUsuario(Usuario usuario) {
 		return create(usuario);		

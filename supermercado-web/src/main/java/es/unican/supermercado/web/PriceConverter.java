@@ -7,8 +7,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@FacesConverter(value = "euroConverter")
-public class EuroConverter implements Converter {
+@FacesConverter(value = "priceConverter")
+public class PriceConverter implements Converter {
 
 	@Override
 	public Object getAsObject(FacesContext ctx, UIComponent comp, String value) {
@@ -17,7 +17,7 @@ public class EuroConverter implements Converter {
 
 	@Override
 	public String getAsString(FacesContext ctx, UIComponent comp, Object value) {
-		double amountInEuros =  Double.parseDouble(value.toString()) * 0.8;
+		double amountInEuros =  Double.parseDouble(value.toString());
 		DecimalFormat df = new DecimalFormat("###,##0.##");
 		return df.format(amountInEuros);
 	}
