@@ -30,7 +30,9 @@
 					<h:outputLabel value="#{msg['register_input_dni']} " />
 					<h:inputText id="dni" value="#{usuarioBean.usuario.dni}"
 						required="true"
-						requiredMessage="#{msg['register_input_dni_request']}" />
+						requiredMessage="#{msg['register_input_dni_request']}">
+							<f:validator validatorId="dniValidator" />
+						</h:inputText>
 					<h:message for="dni" class="pure-form-message" />
 				</div>
 				<div class="pure-control-group">

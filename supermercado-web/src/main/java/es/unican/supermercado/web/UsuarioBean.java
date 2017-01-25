@@ -46,8 +46,8 @@ public class UsuarioBean implements Serializable {
 			return "listaArticulos.xhtml";
 			
 		}catch(UsuarioNoExisteException e){		
-			msg = new FacesMessage(bundle.getString("login_input_error"), "ERROR MSG");
-	        msg.setSeverity(FacesMessage.SEVERITY_INFO);
+			msg = new FacesMessage(bundle.getString("login_input_error"));
+	        msg.setSeverity(FacesMessage.SEVERITY_WARN);
 	        context = FacesContext.getCurrentInstance();
 	        context.addMessage(null, msg);
 	        
@@ -57,10 +57,12 @@ public class UsuarioBean implements Serializable {
 	}	
 	
 	public String logout(){
-		msg = new FacesMessage(bundle.getString("logout_message"), "INFO MSG");		
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		
+		msg = new FacesMessage(bundle.getString("logout_message"));		
         msg.setSeverity(FacesMessage.SEVERITY_INFO);
         context = FacesContext.getCurrentInstance();
-        context.addMessage(null, msg);
+        context.addMessage(null, msg);               
         
         return "login.xhtml";
 	}
@@ -74,8 +76,8 @@ public class UsuarioBean implements Serializable {
 			return "login.xhtml";
 			
 		}catch(UsuarioYaExisteException e){
-			msg = new FacesMessage(bundle.getString("register_input_error"), "ERROR MSG");
-	        msg.setSeverity(FacesMessage.SEVERITY_INFO);
+			msg = new FacesMessage(bundle.getString("register_input_error"));
+	        msg.setSeverity(FacesMessage.SEVERITY_WARN);
 	        context = FacesContext.getCurrentInstance();
 	        context.addMessage(null, msg);
 	        

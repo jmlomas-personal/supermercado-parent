@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<span> 
+		<h:graphicImage library="theme" name="img/user.png"
+			styleClass="icon" /> 
+		<span>#{msg['login_message']} #{usuarioBean.usuario.nombre},</span>
+		
+		<span class="inline">
+			<h:form>
+				<h:commandLink value="#{msg['logout_option']}"
+					action="#{usuarioBean.logout}" />
+			</h:form>
+		</span>
+		
+		<span class="inline separated">#{msg['user_bar_cart']} #{carritoBean.total} #{msg['user_bar_currency']}</span>
+		
+		<span class="inline">
+			<h:form>
+				<h:link outcome="carrito.xhtml">
+					<h:graphicImage library="theme" name="img/checkout.png"
+						styleClass="icon" /> 
+				</h:link>
+			</h:form>
+		</span>
+	</span>
+
+</ui:composition>

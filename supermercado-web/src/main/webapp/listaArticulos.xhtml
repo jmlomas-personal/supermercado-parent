@@ -2,49 +2,64 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<h:outputStylesheet library="theme" name="css/main.css" />
-	<title>Listados de articulos</title>	
+	<h:outputStylesheet library="theme" name="css/custom.css" />
+	<title>#{msg['article_list']}</title>
 </h:head>
 <h:body>
+	<center>
 	<h1>#{msg['article_list']}</h1>
-	<span>Usuario: #{usuarioBean.usuario.nombre}</span>
-	<hr />
-		<h:dataTable value="#{articuloBean.listaArticulos}" var="articulo" class="pure-table">
-		
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Nombre" />
-				</f:facet>
-				<h:outputText value="#{articulo.nombre}" />
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Unidades en inventario" />
-				</f:facet>
-				<h:outputText value="#{articulo.unidadesStock}" />
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Precio" />
-				</f:facet>
-				<h:outputText value="#{articulo.precio}" >
-					<f:converter converterId="priceConverter" />
-				</h:outputText>
-			</h:column>
-			
-		</h:dataTable>
+	<ui:include src="userBar.xhtml" />	
+	<hr />	
+		<h:form>
+			<h:graphicImage library="theme" name="img/list.png" />
+			<h:dataTable value="#{articuloBean.listaArticulos}"
+				binding="#{articuloBean.datatableArticulos}" var="articulo"
+				class="pure-table">
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msg['article_label_nombre']}" />
+					</f:facet>
+					<h:outputText value="#{articulo.nombre}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msg['article_label_unidades']}" />
+					</f:facet>
+					<h:outputText value="#{articulo.unidadesStock}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msg['article_label_precio']}" />
+					</f:facet>
+					<h:outputText value="#{articulo.precio}">
+						<f:converter converterId="priceConverter" />
+					</h:outputText>
+				</h:column>
+
+				<h:column>
+					<h:commandButton action="#{articuloBean.abrirSeleccion}"
+						actionListener="#{articuloBean.selectArticulo}"
+						styleClass="btnAdd" />
+				</h:column>
+
+			</h:dataTable>
+		</h:form>
 		
 		<h:form>
 			<h:link outcome="nuevoArticulo.xhtml" value="#{msg['new_article']}" />
 		</h:form>
-				
-	<hr />
-	
-	<h:messages />
+
+		<hr />
+
+		<h:messages />
+	</center>
 </h:body>
 </html>

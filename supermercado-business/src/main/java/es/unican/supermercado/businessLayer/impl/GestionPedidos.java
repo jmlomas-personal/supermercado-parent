@@ -1,6 +1,8 @@
 package es.unican.supermercado.businessLayer.impl;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
@@ -50,10 +52,12 @@ public class GestionPedidos implements IRealizaPedidosLocal, IRealizaPedidosRemo
 	@Override
 	public Pedido procesarPedido() {
 		Pedido pedido = pedidosDAO.getUltimoPedidoPendiente(EstadoPedido.PENDIENTE);
+		
 		if(pedido != null){
 			pedido.setEstado(EstadoPedido.PROCESADO);
 			pedidosDAO.updatePedido(pedido);
 		}
+		
 		return pedido;
 	}
 
@@ -65,11 +69,14 @@ public class GestionPedidos implements IRealizaPedidosLocal, IRealizaPedidosRemo
 	 */
 	@Override
 	public Pedido entregarPedido(Long id) {
+		
 		Pedido pedido = pedidosDAO.getPedido(id);
+		
 		if(pedido != null){
 			pedido.setEstado(EstadoPedido.ENTREGADO);
 			pedidosDAO.updatePedido(pedido);
 		}
+		
 		return pedido;
 	}
 
@@ -85,8 +92,10 @@ public class GestionPedidos implements IRealizaPedidosLocal, IRealizaPedidosRemo
 			throw new UsuarioNoExisteException();
 		}
 
-		this.pedidoPreparacion = new Pedido();
+		pedidoPreparacion = new Pedido();
+		pedidoPreparacion.setLineasPedido(new ArrayList<LineaPedido>());
 		pedidoPreparacion.setUsuario(usuario);
+		pedidoPreparacion.setFecha(new Date(GregorianCalendar.getInstance().getTimeInMillis()));
 	}
 
 	/**
@@ -100,15 +109,16 @@ public class GestionPedidos implements IRealizaPedidosLocal, IRealizaPedidosRemo
 		Articulo artAux = lineaPedido.getArticulo();
 		int stock = artAux.getUnidadesStock();
 
-		if(cantidad < stock){
+		if(cantidad > stock){
 			throw new StockInsuficienteException();
 		} else {
 			artAux.setUnidadesStock(stock - cantidad);
 			articulosDAO.updateArticulo(artAux);
-			this.pedidoPreparacion.anyadeLineaPedido(lineaPedido);
+			lineaPedido.setPedido(pedidoPreparacion);
+			pedidoPreparacion.getLineasPedido().add(lineaPedido);
 		}
 
-		return this.pedidoPreparacion;
+		return pedidoPreparacion;
 	}
 
 	/**
@@ -123,8 +133,8 @@ public class GestionPedidos implements IRealizaPedidosLocal, IRealizaPedidosRemo
 
 		artAux.setUnidadesStock(stock + cantidad);
 		articulosDAO.updateArticulo(artAux);
-		this.pedidoPreparacion.eliminaLineaPedido(lineaPedido);
-		return this.pedidoPreparacion;
+		pedidoPreparacion.getLineasPedido().remove(lineaPedido);
+		return pedidoPreparacion;
 	}
 
 	/**
@@ -132,9 +142,10 @@ public class GestionPedidos implements IRealizaPedidosLocal, IRealizaPedidosRemo
 	 * @return El pedido
 	 */
 	@Override
-	public Pedido confirmarPedido(Date horaRecogida ) {
-		this.pedidoPreparacion.setHoraRecogida(horaRecogida);
-		pedidosDAO.addPedido(pedidoPreparacion);
+	public Pedido confirmarPedido(){//(Date horaRecogida ) {
+		//this.pedidoPreparacion.setHoraRecogida(horaRecogida);
+		pedidoPreparacion.setEstado(EstadoPedido.PENDIENTE);
+		pedidoPreparacion = pedidosDAO.addPedido(pedidoPreparacion);		
 		return pedidoPreparacion;
 	}
 

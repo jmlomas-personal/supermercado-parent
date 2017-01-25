@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -46,7 +47,7 @@ public class Pedido implements Serializable {
 	@JoinColumn ( name = "usuario_fk" )
 	private Usuario usuario;
 	
-	@OneToMany( mappedBy = "pedido" )
+	@OneToMany( cascade = CascadeType.ALL, mappedBy = "pedido")
 	private List<LineaPedido> lineasPedido;	
 	
 	// Getters y setters
@@ -88,14 +89,6 @@ public class Pedido implements Serializable {
 
 	public void setLineasPedido(List<LineaPedido> lineasPedido) {
 		this.lineasPedido = lineasPedido;
-	}
-	
-	public void anyadeLineaPedido(LineaPedido lineaPedido){
-		this.lineasPedido.add(lineaPedido);
-	}
-	
-	public void eliminaLineaPedido(LineaPedido lineaPedido){
-		this.lineasPedido.remove(lineaPedido);
 	}
 	
 	public Date getHoraRecogida() {

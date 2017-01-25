@@ -1,7 +1,5 @@
 package es.unican.supermercado.businessLayer;
 
-import java.sql.Date;
-
 import es.unican.supermercado.businessLayer.entities.LineaPedido;
 import es.unican.supermercado.businessLayer.entities.Pedido;
 import es.unican.supermercado.utils.StockInsuficienteException;
@@ -15,5 +13,5 @@ public abstract interface IRealizaPedidos {
 	
 	public Pedido eliminaLineaPedido(LineaPedido lineaPedido);
 	
-	public Pedido confirmarPedido(Date horaRecogida);
+	public Pedido confirmarPedido();//(Date horaRecogida);
 }

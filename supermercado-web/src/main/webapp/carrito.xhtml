@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="theme" name="css/main.css" />
+	<h:outputStylesheet library="theme" name="css/custom.css" />
+	<title>#{msg['cart_title']}</title>
+</h:head>
+<h:body>
+	<center>
+		<ui:include src="userBar.xhtml" />
+		<hr />
+		<h:form>
+			<h:graphicImage library="theme" name="img/payment.png" />
+			<h:dataTable value="#{carritoBean.lineasPedido}"
+				binding="#{articuloBean.datatableLineasPedido}" var="lineaPedido"
+				class="pure-table">
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msg['cart_input_nombre']}" />
+					</f:facet>
+					<h:outputText value="#{lineaPedido.articulo.nombre}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msg['cart_input_unidades']}" />
+					</f:facet>
+					<h:outputText value="#{lineaPedido.cantidad}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msg['cart_input_precio']}" />
+					</f:facet>
+					<h:outputText
+						value="#{lineaPedido.articulo.precio * lineaPedido.cantidad}">
+						<f:converter converterId="priceConverter" />
+					</h:outputText>
+				</h:column>
+
+				<h:column>
+					<h:commandButton action="#{articuloBean.actualizarCarrito}"
+						actionListener="#{articuloBean.removeLineaPedido}"
+						styleClass="btnDel" />
+				</h:column>
+
+			</h:dataTable>
+
+		</h:form>
+
+		<h:form>
+			<div class="pure-controls">
+				<h:commandButton value="#{msg['cart_payment_option']}"
+					action="#{articuloBean.altaPedido}"
+					class="pure-button pure-button-primary" />
+
+				<h:link outcome="listaArticulos.xhtml"
+					value="#{msg['cart_option_cancel']}"
+					class="pure-button pure-button-primary" />
+			</div>
+		</h:form>
+		<hr />
+
+		<h:messages />
+	</center>
+</h:body>
+</html>
