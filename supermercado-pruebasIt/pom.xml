@@ -27,5 +27,12 @@
 			<artifactId>supermercado-dao</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		
+		<dependency>
+		    <groupId>io.github.bonigarcia</groupId>
+		    <artifactId>webdrivermanager</artifactId>
+		    <version>1.5.1</version>
+		</dependency>
+
 	</dependencies>
 </project>

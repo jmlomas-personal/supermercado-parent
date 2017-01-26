@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.ejb.embeddable.EJBContainer;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -28,27 +29,49 @@ public class GestionArticulosIT {
 	private static List<Articulo> articulos;
 	private static EJBContainer container;
 
-	@BeforeClass
-	public static void initContainer() throws Exception {
-		/*
+	//@BeforeClass
+	//public static void initContainer() throws Exception {
+	/*
 		Map properties = new HashMap();
 		properties.put(EJBContainer.MODULES, new File[]{new File("classes")});
 
 		properties.put("org.glassfish.ejb.embedded.glassfish.installation.root",
 				"/Users/MacbookAir/Documents/glassfish4/glassfish");
-		*/
+	 */
+
+	//container = EJBContainer.createEJBContainer(/*properties*/);
+
+	//articulosDAO = (IArticulosDAO) container.getContext().lookup("java:global/ejb-app/supermercado-dao-0_0_1-SNAPSHOT/ArticulosDAO");
+
+	//necesario hacer el set manualmente??
+	//gestionArticulos.setArticulosDAO(articulosDAO);
+
+	//Necesitamos cambiar esa property para poder supongo que conectar con glassfish
+	// y que con lo del contenedor embebido nos inyecte el modulo dao para que gestionArticulos
+	// funcione para las pruebas.
+	//}
+
+	@BeforeClass
+	public static void initContainer() throws Exception {
+		//Creamos el contenedor embebido, por defecto, inicializa todos los EJB que estén en el classpath del cliente
+		container = EJBContainer.createEJBContainer();
+		// Buscamos el EJB a través de JNDI
+		// El scope varía según se lance desde Eclipse o desde Maven.
+		// El que se muestra es el de Maven (java:global/ejb-app/<NombreArchivoJAR>/<NombreEJB>
+		articulosDAO = (IArticulosDAO) container.getContext().lookup(
+				"java:global/ejb-app/supermercado-dao-0_0_1-SNAPSHOT/articulosDAO");
 		
-		container = EJBContainer.createEJBContainer(/*properties*/);
-
-		articulosDAO = (IArticulosDAO) container.getContext().lookup("java:global/ejb-app/supermercado-dao-0_0_1-SNAPSHOT/ArticulosDAO");
-
-		//TODO necesario hacer el set manualmente??
-		gestionArticulos.setArticulosDAO(articulosDAO);
-
-		//TODO Necesitamos cambiar esa property para poder supongo que conectar con glassfish
-		// y que con lo del contenedor embebido nos inyecte el modulo dao para que gestionArticulos
-		// funcione para las pruebas.
+		gestionArticulos = new GestionArticulos();
 	}
+	
+	@AfterClass
+	public static void closeContainer() throws Exception {
+		//Cerramos el contenedor (Importante)
+		if (container != null) {
+			container.close();
+		}
+	}
+
 
 	/**
 	 * Se inserta un articulo y se obtiene de la bd
