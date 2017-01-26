@@ -1,5 +1,6 @@
 package es.unican.supermercado.businessLayer.impl;
 
+import javax.annotation.security.DeclareRoles;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -12,6 +13,7 @@ import es.unican.supermercado.utils.UsuarioNoExisteException;
 import es.unican.supermercado.utils.UsuarioYaExisteException;
 
 @Stateless
+@DeclareRoles("ADMIN")
 public class GestionUsuarios implements IRegistroUsuariosLocal, IRegistroUsuariosRemote {
 
 	@EJB

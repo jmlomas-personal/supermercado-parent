@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="theme" name="css/main.css" />
+	<h:outputStylesheet library="theme" name="css/custom.css" />
+	<title>#{msg['administration_title']}</title>
+</h:head>
+
+<h:body>
+	<center>
+		<h1>#{msg['administration_message']}</h1>
+		
+		<hr />
+
+		<h:form class="pure-form pure-form-stacked">
+
+			<fieldset>
+				<legend>#{msg['new_article_head']}</legend>
+
+				<h:outputLabel value="#{msg['new_article_input_nombre']} " />
+				<h:inputText id="nombre" value="#{articuloBean.articulo.nombre}"
+					required="true"
+					requiredMessage="#{msg['new_article_input_nombre_request']}" />
+				<h:message for="nombre" class="pure-form-message" />
+
+				<h:outputLabel value="#{msg['new_article_input_unidades']} " />
+				<h:inputText id="unidadesStock"
+					value="#{articuloBean.articulo.unidadesStock}" required="true"
+					requiredMessage="#{msg['new_article_input_unidades_request']}" />
+				<h:message for="unidadesStock" class="pure-form-message" />
+
+				<h:outputLabel value="#{msg['new_article_input_precio']} " />
+				<h:inputText id="precio" value="#{articuloBean.articulo.precio}"
+					required="true"
+					requiredMessage="#{msg['new_article_input_precio_request']}" />
+				<h:message for="precio" class="pure-form-message" />
+
+				<h:commandButton value="#{msg['new_article_option']}"
+					action="#{articuloBean.altaArticulo}"
+					class="pure-button pure-button-primary" />
+			</fieldset>
+
+		</h:form>
+
+		<hr />
+
+		<h:messages />
+
+	</center>
+</h:body>
+</html>

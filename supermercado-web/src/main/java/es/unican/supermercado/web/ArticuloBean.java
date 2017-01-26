@@ -80,8 +80,15 @@ public class ArticuloBean implements Serializable {
 		try{
 
 			articulo = gestionaArticulo.altaArticulo(articulo);
-			listaArticulos = visualizaArticulo.verArticulos();
-			return "listaArticulos.xhtml";
+			listaArticulos = visualizaArticulo.verArticulos();						
+			msg = new FacesMessage("Se ha dado correctamente de alta el articulo: " + articulo.getNombre());
+			msg.setSeverity(FacesMessage.SEVERITY_WARN);
+			context = FacesContext.getCurrentInstance();
+			context.addMessage(null, msg);
+			
+			articulo = new Articulo();
+			
+			return "administration.xhtml";
 
 		}catch(ArticuloYaExisteException e){
 			msg = new FacesMessage(bundle.getString("new_article_error"));
