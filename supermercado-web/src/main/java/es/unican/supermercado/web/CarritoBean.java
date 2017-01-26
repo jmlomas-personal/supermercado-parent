@@ -54,7 +54,7 @@ public class CarritoBean implements Serializable {
 	 */
 	public String agregarArticuloAlCarrito(){				
 		
-		if(lineaPedido.getCantidad() < lineaPedido.getArticulo().getUnidadesStock()){
+		if(lineaPedido.getCantidad() <= lineaPedido.getArticulo().getUnidadesStock()){
 			lineasPedido.add(lineaPedido);
 			total += (lineaPedido.getArticulo().getPrecio() * lineaPedido.getCantidad());
 			lineaPedido = new LineaPedido();
