@@ -103,7 +103,6 @@ public class GestionArticulos implements IGestionaArticulosRemote, IGestionaArti
 	// Getters y setters. Necesarios para futuros tests unitarios con mockito para poder
 	// asignar un valor a los atributos DAO ya que no disponemos de la inyeccion del
 	// EJB.
-
 	public IArticulosDAO getArticulosDAO() {
 		return articulosDAO;
 	}

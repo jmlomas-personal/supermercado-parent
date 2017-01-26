@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
+import javax.annotation.security.DeclareRoles;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 
@@ -27,6 +28,7 @@ import es.unican.supermercado.utils.StockInsuficienteException;
 import es.unican.supermercado.utils.UsuarioNoExisteException;
 
 @Stateful
+@DeclareRoles("ADMIN")
 public class GestionPedidos implements IRealizaPedidosLocal, IRealizaPedidosRemote, IGestionaPedidosLocal, IGestionaPedidosRemote  {
 
 	@EJB

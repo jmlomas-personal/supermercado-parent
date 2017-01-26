@@ -64,14 +64,24 @@ public class UsuarioBean implements Serializable {
         context = FacesContext.getCurrentInstance();
         context.addMessage(null, msg);               
         
+        usuario = new Usuario();
+        dni = "";
+        
         return "login.xhtml";
 	}
 	
 	public String altaUsuario() {
 		
 		try{
-			usuario = registroUsuarios.altaUsuario(usuario);
+			registroUsuarios.altaUsuario(usuario);
 			
+			msg = new FacesMessage(bundle.getString("register_success"));
+	        msg.setSeverity(FacesMessage.SEVERITY_INFO);
+	        context = FacesContext.getCurrentInstance();
+	        context.addMessage(null, msg);
+			
+	        usuario = new Usuario();
+	        
 			// Pasamos a la siguiente pantalla
 			return "login.xhtml";
 			
