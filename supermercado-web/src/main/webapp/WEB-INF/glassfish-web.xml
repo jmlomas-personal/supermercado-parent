@@ -4,6 +4,7 @@
 <glassfish-web-app>
     <context-root>/supermercado-web</context-root>
     
+    <!-- Roles sacadaos de la configuracion del servidor -->
     <security-role-mapping>
 		<role-name>ADMIN</role-name>
 		<group-name>ADMIN</group-name>

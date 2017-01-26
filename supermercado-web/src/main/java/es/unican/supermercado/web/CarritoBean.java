@@ -13,17 +13,26 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import es.unican.supermercado.businessLayer.entities.LineaPedido;
 
+/**
+ * CDI Bean para mantener el carrito
+ * de la sesion de usuario.
+ *  
+ * @author Juan Manuel Lomas
+ *
+ */
 @Named
 @SessionScoped
 public class CarritoBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
+	// Atributos
 	private double total = 0.0;
 	private Date fechaRecogida;
 	private LineaPedido lineaPedido = new LineaPedido();
 	private List<LineaPedido> lineasPedido = new ArrayList<LineaPedido>();	
 	
+	// Atributos JSF
 	private FacesContext context;
 	private ResourceBundle bundle;
 	private FacesMessage msg;
@@ -31,9 +40,18 @@ public class CarritoBean implements Serializable {
 	@Inject
 	UsuarioBean usuarioBean;
 	
+	/**
+	 * Constructor
+	 */
 	public CarritoBean() {				
 	}
 	
+	/**
+	 * Metodo que agrega una linea de pedido al carro
+	 * 
+	 * @return el listado general de articulos si ha ido todo bien,
+	 * la misma pagina en cualquier otro caso
+	 */
 	public String agregarArticuloAlCarrito(){				
 		
 		if(lineaPedido.getCantidad() < lineaPedido.getArticulo().getUnidadesStock()){
@@ -58,6 +76,10 @@ public class CarritoBean implements Serializable {
 		
 	}
 
+	/**
+	 * Funcion para vaciar el carrito.
+	 * Util tras realizar un pedido.
+	 */
 	public void empty(){
 		lineasPedido = new ArrayList<LineaPedido>();
 		lineaPedido = new LineaPedido();
@@ -65,6 +87,7 @@ public class CarritoBean implements Serializable {
 		fechaRecogida = null;		
 	}
 	
+	// Getters y Setters
 	public List<LineaPedido> getLineasPedido() {
 		return lineasPedido;
 	}

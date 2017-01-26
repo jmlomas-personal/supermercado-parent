@@ -11,9 +11,19 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
+/**
+ * Clase para comprobar el correcto
+ * formato de un DNI o NIE.
+ * 
+ * No se hace comprobacion de letra.
+ * 
+ * @author Juan Manuel Lomas
+ *
+ */
 @FacesValidator(value = "dniValidator")
 public class DniValidator implements Validator {
 
+	// Atributos
 	private Pattern pattern;
 	private Matcher matcher;
 	

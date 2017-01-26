@@ -13,16 +13,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Filter checks if LoginBean has loginIn property set to true.
- * If it is not set then request is being redirected to the login.xhml page.
+ * Filtro para controlar el acceso para la gestion de usuarios propia de la aplicacion
+ * Con esto conseguimos que no se acceda a ninguna pagina bajo la ruta especificada en la
+ * configuracion (web.xml), sin estar logueado previamente
  */
 public class LoginFilter implements Filter {
 
+	// Necesitamos acceder al CDI bean, con un Inject nos vale
 	@Inject
 	private UsuarioBean usuarioBean;
 	
 	/**
-	 * Checks if user is logged in. If not it redirects to the login.xhtml page.
+	 * Metodo que comprueba se el usuario que accede a la pagina esta logueado o no.
+	 * Si no esta logueado, lo mandamos a la pagina de login
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
@@ -35,6 +38,8 @@ public class LoginFilter implements Filter {
 
 	}
 
+	// Metodos propios de la clase Filter. No nos interesa tocarlos
+	
 	public void init(FilterConfig config) throws ServletException {
 		// Nothing to do here!
 	}

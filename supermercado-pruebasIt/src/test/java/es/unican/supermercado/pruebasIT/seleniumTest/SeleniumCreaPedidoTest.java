@@ -1,13 +1,21 @@
-package com.example.tests;
+package es.unican.supermercado.pruebasIT.seleniumTest;
 
-import java.util.regex.Pattern;
+import static org.junit.Assert.fail;
+
 import java.util.concurrent.TimeUnit;
-import org.junit.*;
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
-import org.openqa.selenium.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
+
+import io.github.bonigarcia.wdm.ChromeDriverManager;
 
 public class SeleniumCreaPedidoTest {
 	private WebDriver driver;
@@ -75,6 +83,7 @@ public class SeleniumCreaPedidoTest {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private boolean isElementPresent(By by) {
 		try {
 			driver.findElement(by);
@@ -84,6 +93,7 @@ public class SeleniumCreaPedidoTest {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private boolean isAlertPresent() {
 		try {
 			driver.switchTo().alert();
@@ -93,6 +103,7 @@ public class SeleniumCreaPedidoTest {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private String closeAlertAndGetItsText() {
 		try {
 			Alert alert = driver.switchTo().alert();

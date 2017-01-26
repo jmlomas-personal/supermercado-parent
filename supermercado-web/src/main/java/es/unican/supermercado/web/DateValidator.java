@@ -12,6 +12,13 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
+/**
+ * Clase para comprobar si una fecha es mayor
+ * que el dia actual.
+ * 
+ * @author Juan Manuel Lomas
+ *
+ */
 @FacesValidator(value = "dateValidator")
 public class DateValidator implements Validator {
 	
@@ -29,6 +36,7 @@ public class DateValidator implements Validator {
 		Calendar calRequest = GregorianCalendar.getInstance();
 		calRequest.setTime( (Date) value );
 		
+		// Forma recomendada en Java de resetear tiempo para una fecha
 		Calendar calToday = GregorianCalendar.getInstance();
 		calToday.set(Calendar.HOUR_OF_DAY, 0);
 		calToday.set(Calendar.MINUTE, 0);

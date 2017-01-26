@@ -29,15 +29,24 @@ import es.unican.supermercado.utils.ArticuloYaExisteException;
 import es.unican.supermercado.utils.StockInsuficienteException;
 import es.unican.supermercado.utils.UsuarioNoExisteException;
 
+/**
+ * CDI Bean para consultar articulos y ejecutar
+ * consultas sobre el EJB que corresponda.
+ * 
+ * @author Juan Manuel Lomas
+ *
+ */
 @Named
 @RequestScoped
 public class ArticuloBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	// Atributos
 	private Articulo articulo = new Articulo();
 	private List<Articulo> listaArticulos = new ArrayList<Articulo>();
 
+	// Forma de mappear en JSF las datatables
 	private HtmlDataTable datatableArticulos;	
 	private HtmlDataTable datatableLineasPedido;	
 
@@ -65,16 +74,31 @@ public class ArticuloBean implements Serializable {
 	@EJB
 	private IRealizaPedidosRemote gestionaPedido;
 
+	/**
+	 * Constructor de la clase
+	 */
 	public ArticuloBean() {
 		context = FacesContext.getCurrentInstance();
 		bundle = context.getApplication().getResourceBundle(context, "msg");
 	}
 
+	/**
+	 * Metodo para obtener los articulos. Al tener un scope de peticion
+	 * recargara con cada redireccion.
+	 */
 	@PostConstruct
 	public void getArticulos() {
 		listaArticulos = visualizaArticulo.verArticulos();
 	}
 
+	/**
+	 * Metodo para dar de alta a un articulo.
+	 * En nuestro caso hemos reutilizado el bean para hacer esta llamada, aunque
+	 * podia ser de la parte del backend gestionada mediante credenciales en el servidor
+	 * (Podiamos tener otro bean para no mezclar conceptos)
+	 * 
+	 * @return la misma pagina siempre en este caso
+	 */
 	public String altaArticulo() {
 
 		try{
@@ -101,6 +125,15 @@ public class ArticuloBean implements Serializable {
 
 	}
 
+	/**
+	 * Metodo que crea un nuevo pedido con sus lineas asociadas
+	 * Al utilizar un EJB Stateful, conseguimos que solo en caso de
+	 * que todo vaya bien, se ejecute el confirmar pedido, y con el 
+	 * el persist.
+	 * 
+	 * @return el listado principal de articulo si ha ido bien, 
+	 * la misma pagina en caso contrario
+	 */
 	public String altaPedido(){
 
 		List<LineaPedido> lineas = carritoBean.getLineasPedido();
@@ -165,6 +198,34 @@ public class ArticuloBean implements Serializable {
 		}			
 	}
 
+	// Metodos para la gestion de llamadas desde un item de un datatable, mediante
+	// un command button.
+	// Siempre tendremos dos metodos, uno que recogera el evento del boton, y con
+	// el que obtendremos el objeto necesario
+	// Otro metodo con la accion a realizar tras hacer lo que fuere con el objeto
+	
+	public String abrirSeleccion(){
+		carritoBean.getLineaPedido().setArticulo(articulo);
+
+		return "/app/agregarArticulo.xhtml";
+	}
+
+	public void selectArticulo(ActionEvent ev) throws IOException {
+		articulo = (Articulo) datatableArticulos.getRowData();			
+	}
+	
+	public String actualizarCarrito(){		
+		return "/app/carrito.xhtml";
+	}
+
+	public void removeLineaPedido(ActionEvent ev) throws IOException {
+		LineaPedido lineaPedido = (LineaPedido) datatableLineasPedido.getRowData();	
+
+		carritoBean.getLineasPedido().remove(lineaPedido);
+		carritoBean.setTotal(carritoBean.getTotal() - (lineaPedido.getArticulo().getPrecio() * lineaPedido.getCantidad()));
+	}
+	
+	// Getters y Setters
 	public Articulo getArticulo() {
 		return articulo;
 	}
@@ -189,33 +250,12 @@ public class ArticuloBean implements Serializable {
 		this.datatableArticulos = datatableArticulos;
 	}
 
-	public String abrirSeleccion(){
-		carritoBean.getLineaPedido().setArticulo(articulo);
-
-		return "/app/agregarArticulo.xhtml";
-	}
-
-	public void selectArticulo(ActionEvent ev) throws IOException {
-		articulo = (Articulo) datatableArticulos.getRowData();			
-	}
-
 	public HtmlDataTable getDatatableLineasPedido() {
 		return datatableLineasPedido;
 	}
 
 	public void setDatatableLineasPedido(HtmlDataTable datatableLineasPedido) {
 		this.datatableLineasPedido = datatableLineasPedido;
-	}
-
-	public String actualizarCarrito(){		
-		return "/app/carrito.xhtml";
-	}
-
-	public void removeLineaPedido(ActionEvent ev) throws IOException {
-		LineaPedido lineaPedido = (LineaPedido) datatableLineasPedido.getRowData();	
-
-		carritoBean.getLineasPedido().remove(lineaPedido);
-		carritoBean.setTotal(carritoBean.getTotal() - (lineaPedido.getArticulo().getPrecio() * lineaPedido.getCantidad()));
 	}
 
 }

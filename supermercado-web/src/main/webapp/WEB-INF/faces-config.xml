@@ -4,18 +4,22 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
     http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
 	version="2.0">
-	
+
 	<application>
-	
+
+		<!-- Definimos el locale por defecto, util en caso de tener mas y un Bean 
+			para gestionar la internacionalizacion -->
 		<locale-config>
 			<default-locale>es</default-locale>
 		</locale-config>
-		
+
+		<!-- Especificamos el archivo por defecto de lenguaje y la variable a utilizar 
+			para manejarlo -->
 		<resource-bundle>
 			<base-name>language.strings_ES</base-name>
 			<var>msg</var>
 		</resource-bundle>
-		
+
 	</application>
-	
+
 </faces-config>

@@ -9,6 +9,17 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
+/**
+ * Clase para comprobar que un valor
+ * entero es mayor a cero.
+ * 
+ * Seguro que se puede hacer dentro de 
+ * la propia vista (.xhtml), pero asi
+ * se practica.
+ * 
+ * @author Juan Manuel Lomas
+ *
+ */
 @FacesValidator(value = "integerValidator")
 public class IntegerValidator implements Validator {
 	

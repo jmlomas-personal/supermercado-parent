@@ -6,6 +6,7 @@
 
 	<!-- <display-name>Login</display-name> -->
 
+	<!-- Pagina principal -->
 	<welcome-file-list>
 		<welcome-file>login.xhtml</welcome-file>
 	</welcome-file-list>
@@ -21,18 +22,21 @@
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
 
-	<!-- Login filter -->
+	<!-- Filtro para comprobar el login -->
 	<filter>
 		<filter-name>LoginFilter</filter-name>
 		<filter-class>es.unican.supermercado.web.LoginFilter</filter-class>
 	</filter>
-	
-	<!-- Set the login filter to secure all the pages in the /app/* path of the application  -->
+
+	<!-- Establecemos que el filtro actuara para todas las paginas en la ruta 
+		/app/ -->
 	<filter-mapping>
 		<filter-name>LoginFilter</filter-name>
 		<url-pattern>/app/*</url-pattern>
 	</filter-mapping>
 
+	<!-- Restricciones de seguridad a modo de flujos completos, indicando para 
+		aquellas paginas que roles hacen falta -->
 	<security-constraint>
 
 		<web-resource-collection>
@@ -50,6 +54,7 @@
 
 	</security-constraint>
 
+	<!-- Definicion de roles y configuraciond e seguridad del servidor -->
 	<security-role>
 		<role-name>ADMIN</role-name>
 	</security-role>

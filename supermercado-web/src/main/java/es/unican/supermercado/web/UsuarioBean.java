@@ -14,12 +14,22 @@ import es.unican.supermercado.businessLayer.entities.Usuario;
 import es.unican.supermercado.utils.UsuarioNoExisteException;
 import es.unican.supermercado.utils.UsuarioYaExisteException;
 
+/**
+ * CDI Bean para el mantenimiento
+ * de la sesion del usuario, asi como
+ * para desconectarse de la
+ * aplicacion.
+ *  
+ * @author Juan Manuel Lomas
+ *
+ */
 @Named
 @SessionScoped
 public class UsuarioBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
+	// Atributos del Bean que estaran disponibles durante la vida de este
 	private Usuario usuario = new Usuario();
 	private String dni;
 	private boolean isUserLogged;
@@ -29,15 +39,24 @@ public class UsuarioBean implements Serializable {
 	private ResourceBundle bundle;
 	FacesMessage msg;
 	
-	// Si lo hiciesemos con un EJB de la capa de negocio
+	// Lo utilizaremos para hacer comporbaciones (Stateless)
 	@EJB
 	private IRegistroUsuariosRemote registroUsuarios;
 	
+	/**
+	 * Constructor de la clase
+	 */
 	public UsuarioBean() {
 		context = FacesContext.getCurrentInstance();
 		bundle = context.getApplication().getResourceBundle(context, "msg");
 	}	
 	
+	/**
+	 * Metodo con el que se identifica el usuario
+	 * 
+	 * @return la siguiente pagina en cado de login satisfactorio, 
+	 * la misma en cualquier otro caso
+	 */
 	public String login() {
 				
 		try{					
@@ -59,6 +78,11 @@ public class UsuarioBean implements Serializable {
 		
 	}	
 	
+	/**
+	 * Metodo que desconecta al usuario
+	 * 
+	 * @return la pagina de login principal para volver a identificarse
+	 */
 	public String logout(){
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		
@@ -74,6 +98,12 @@ public class UsuarioBean implements Serializable {
         return "/login.xhtml?faces-redirect=true";
 	}
 	
+	/**
+	 * Metodo para dar de alta un nuevo usuario en el sistema
+	 * 
+	 * @return la pagina de login en caso de registrarse correctamente,
+	 * la misma en cualquier otro caso
+	 */
 	public String altaUsuario() {
 		
 		try{
@@ -101,6 +131,7 @@ public class UsuarioBean implements Serializable {
 		
 	}
 	
+	// Getters y Setters
 	public Usuario getUsuario() {
 		return usuario;
 	}
