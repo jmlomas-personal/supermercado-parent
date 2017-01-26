@@ -41,7 +41,7 @@ public class CarritoBean implements Serializable {
 			total += (lineaPedido.getArticulo().getPrecio() * lineaPedido.getCantidad());
 			lineaPedido = new LineaPedido();
 			
-			return "listaArticulos.xhtml";
+			return "/app/listaArticulos.xhtml";
 		}else{
 			context = FacesContext.getCurrentInstance();
 			bundle = context.getApplication().getResourceBundle(context, "msg");

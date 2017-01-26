@@ -13,7 +13,7 @@
 </h:head>
 <h:body>
 	<center>
-		<ui:include src="userBar.xhtml" />
+		<ui:include src="/app/userBar.xhtml" />
 		<hr />
 		<h:form>
 			<h:graphicImage library="theme" name="img/payment.png" />
@@ -69,7 +69,7 @@
 
 			<div class="pure-controls">
 
-				<h:link outcome="listaArticulos.xhtml"
+				<h:link outcome="/app/listaArticulos.xhtml"
 					value="#{msg['cart_option_cancel']}"
 					class="pure-button pure-button-primary" />
 

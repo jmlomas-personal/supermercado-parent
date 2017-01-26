@@ -88,7 +88,7 @@ public class ArticuloBean implements Serializable {
 			
 			articulo = new Articulo();
 			
-			return "administration.xhtml";
+			return "/app/administration.xhtml";
 
 		}catch(ArticuloYaExisteException e){
 			msg = new FacesMessage(bundle.getString("new_article_error"));
@@ -161,7 +161,7 @@ public class ArticuloBean implements Serializable {
 			context.addMessage(null, msg);			
 			context.getExternalContext().getFlash().setKeepMessages(true);
 			
-			return "listaArticulos.xhtml?faces-redirect=true";	
+			return "/app/listaArticulos.xhtml?faces-redirect=true";	
 		}			
 	}
 
@@ -192,7 +192,7 @@ public class ArticuloBean implements Serializable {
 	public String abrirSeleccion(){
 		carritoBean.getLineaPedido().setArticulo(articulo);
 
-		return "agregarArticulo.xhtml";
+		return "/app/agregarArticulo.xhtml";
 	}
 
 	public void selectArticulo(ActionEvent ev) throws IOException {
@@ -208,7 +208,7 @@ public class ArticuloBean implements Serializable {
 	}
 
 	public String actualizarCarrito(){		
-		return "carrito.xhtml";
+		return "/app/carrito.xhtml";
 	}
 
 	public void removeLineaPedido(ActionEvent ev) throws IOException {
