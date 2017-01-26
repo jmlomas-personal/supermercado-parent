@@ -15,6 +15,12 @@ import es.unican.supermercado.daoLayer.IArticulosDAORemote;
 import es.unican.supermercado.utils.ArticuloNotFoundException;
 import es.unican.supermercado.utils.ArticuloYaExisteException;
 
+/**
+ * Clase que implementa los metodos para la gestion de articulos en el supermercado 
+ * electronico.
+ * @author MacbookAir
+ *
+ */
 @Stateless
 public class GestionArticulos implements IGestionaArticulosRemote, IGestionaArticulosLocal, IVisualizaArticulosRemote, IVisualizaArticulosLocal {
 

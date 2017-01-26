@@ -27,6 +27,12 @@ import es.unican.supermercado.utils.ArticuloNotFoundException;
 import es.unican.supermercado.utils.StockInsuficienteException;
 import es.unican.supermercado.utils.UsuarioNoExisteException;
 
+/**
+ * Clase que implementa los metodos para la gestion de pedidos en el supermercado 
+ * electronico.
+ * @author MacbookAir
+ *
+ */
 @Stateful
 @DeclareRoles("ADMIN")
 public class GestionPedidos implements IRealizaPedidosLocal, IRealizaPedidosRemote, IGestionaPedidosLocal, IGestionaPedidosRemote  {

@@ -12,6 +12,12 @@ import es.unican.supermercado.daoLayer.IUsuariosDAORemote;
 import es.unican.supermercado.utils.UsuarioNoExisteException;
 import es.unican.supermercado.utils.UsuarioYaExisteException;
 
+/**
+ * Clase que implementa los metodos para la gestion de usuarios en el supermercado 
+ * electronico.
+ * @author MacbookAir
+ *
+ */
 @Stateless
 @DeclareRoles("ADMIN")
 public class GestionUsuarios implements IRegistroUsuariosLocal, IRegistroUsuariosRemote {
