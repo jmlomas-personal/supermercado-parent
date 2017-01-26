@@ -22,6 +22,7 @@ public class UsuarioBean implements Serializable {
 	
 	private Usuario usuario = new Usuario();
 	private String dni;
+	private boolean isUserLogged;
 
 	// Atributos de JSF
 	private FacesContext context;
@@ -41,15 +42,17 @@ public class UsuarioBean implements Serializable {
 				
 		try{					
 			usuario = registroUsuarios.dameUsuario(dni);
-			
+			isUserLogged = true;
 			// Pasamos a la siguiente pantalla
-			return "listaArticulos.xhtml";
+			return "/app/listaArticulos.xhtml";
 			
 		}catch(UsuarioNoExisteException e){		
 			msg = new FacesMessage(bundle.getString("login_input_error"));
 	        msg.setSeverity(FacesMessage.SEVERITY_WARN);
 	        context = FacesContext.getCurrentInstance();
 	        context.addMessage(null, msg);
+	        
+	        isUserLogged = false;
 	        
 	        return null;
 		}
@@ -66,8 +69,9 @@ public class UsuarioBean implements Serializable {
         
         usuario = new Usuario();
         dni = "";
+        isUserLogged = false;
         
-        return "login.xhtml";
+        return "/login.xhtml";
 	}
 	
 	public String altaUsuario() {
@@ -81,9 +85,10 @@ public class UsuarioBean implements Serializable {
 	        context.addMessage(null, msg);
 			
 	        usuario = new Usuario();
+	        isUserLogged = false;
 	        
 			// Pasamos a la siguiente pantalla
-			return "login.xhtml";
+			return "/login.xhtml";
 			
 		}catch(UsuarioYaExisteException e){
 			msg = new FacesMessage(bundle.getString("register_input_error"));
@@ -112,4 +117,11 @@ public class UsuarioBean implements Serializable {
 		this.dni = dni;
 	}
 
+	public boolean isUserLogged() {
+		return isUserLogged;
+	}
+
+	public void setUserLogged(boolean isUserLogged) {
+		this.isUserLogged = isUserLogged;
+	}
 }

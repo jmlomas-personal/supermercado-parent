@@ -14,7 +14,7 @@
 
 <h:body>
 	<center>
-		<ui:include src="userBar.xhtml" />
+		<ui:include src="/app/userBar.xhtml" />
 		<hr />
 
 		<h:form class="pure-form pure-form-aligned">
@@ -47,7 +47,7 @@
 						action="#{carritoBean.agregarArticuloAlCarrito}"
 						class="pure-button pure-button-primary" />
 
-					<h:link outcome="listaArticulos.xhtml"
+					<h:link outcome="/app/listaArticulos.xhtml"
 						value="#{msg['add_article_option_cancel']}"
 						class="pure-button pure-button-primary" />
 				</div>
