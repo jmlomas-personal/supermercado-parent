@@ -59,7 +59,6 @@ public class GestionArticulos implements IGestionaArticulosRemote, IGestionaArti
 			throw new ArticuloNotFoundException();
 		} else {
 			articulosDAO.deleteArticulo(auxArt);
-			//TODO articulo en vez de auxArt ??
 		}
 		return auxArt;
 	}
@@ -81,7 +80,7 @@ public class GestionArticulos implements IGestionaArticulosRemote, IGestionaArti
 		}
 		return auxArt;
 	}
-
+	
 	/**
 	 * Metodo que retorna la lista de articulos completa
 	 * @return Lista de articulos

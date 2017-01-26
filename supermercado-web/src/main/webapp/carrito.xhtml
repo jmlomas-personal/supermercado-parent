@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<h:outputStylesheet library="theme" name="css/main.css" />
@@ -55,13 +56,25 @@
 		</h:form>
 
 		<h:form>
+			<div class="pure-control-group">
+				<h:outputLabel value="#{msg['cart_input_fecha_recogida']} " />
+				<h:inputText id="fechaRecogida" p:type="date"
+					value="#{carritoBean.fechaRecogida}" required="true"
+					requiredMessage="#{msg['cart_input_fecha_recogida_request']}">
+					<f:convertDateTime pattern="yyyy-MM-dd" />
+					<f:validator validatorId="dateValidator" />
+				</h:inputText>
+				<h:message for="fechaRecogida" class="pure-form-message" />
+			</div>
+
 			<div class="pure-controls">
-				<h:commandButton value="#{msg['cart_payment_option']}"
-					action="#{articuloBean.altaPedido}"
-					class="pure-button pure-button-primary" />
 
 				<h:link outcome="listaArticulos.xhtml"
 					value="#{msg['cart_option_cancel']}"
+					class="pure-button pure-button-primary" />
+
+				<h:commandButton value="#{msg['cart_payment_option']}"
+					action="#{articuloBean.altaPedido}"
 					class="pure-button pure-button-primary" />
 			</div>
 		</h:form>

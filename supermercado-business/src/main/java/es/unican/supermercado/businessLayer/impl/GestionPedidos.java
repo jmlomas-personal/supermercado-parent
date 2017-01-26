@@ -22,6 +22,7 @@ import es.unican.supermercado.daoLayer.IPedidosDAO;
 import es.unican.supermercado.daoLayer.IPedidosDAORemote;
 import es.unican.supermercado.daoLayer.IUsuariosDAO;
 import es.unican.supermercado.daoLayer.IUsuariosDAORemote;
+import es.unican.supermercado.utils.ArticuloNotFoundException;
 import es.unican.supermercado.utils.StockInsuficienteException;
 import es.unican.supermercado.utils.UsuarioNoExisteException;
 
@@ -101,24 +102,31 @@ public class GestionPedidos implements IRealizaPedidosLocal, IRealizaPedidosRemo
 	/**
 	 * Metodo que anyade una linea de pedido al pedido del usuario
 	 * @throws StockInsuficienteException 
+	 * @throws ArticuloNotFoundException 
 	 * 
 	 */
 	@Override
-	public Pedido anyadeLineaPedido(LineaPedido lineaPedido) throws StockInsuficienteException {
-		int cantidad = lineaPedido.getCantidad(); 
-		Articulo artAux = lineaPedido.getArticulo();
-		int stock = artAux.getUnidadesStock();
-
-		if(cantidad > stock){
-			throw new StockInsuficienteException();
+	public Pedido anyadeLineaPedido(LineaPedido lineaPedido) throws StockInsuficienteException, ArticuloNotFoundException {
+		
+		Articulo artAux = articulosDAO.getArticuloNombre(lineaPedido.getArticulo().getNombre());
+		
+		if(artAux == null){
+			throw new ArticuloNotFoundException();
 		} else {
-			artAux.setUnidadesStock(stock - cantidad);
-			articulosDAO.updateArticulo(artAux);
-			lineaPedido.setPedido(pedidoPreparacion);
-			pedidoPreparacion.getLineasPedido().add(lineaPedido);
-		}
+			int cantidad = lineaPedido.getCantidad(); 		
+			int stock = artAux.getUnidadesStock();
+	
+			if(cantidad > stock){
+				throw new StockInsuficienteException();
+			} else {
+				artAux.setUnidadesStock(stock - cantidad);
+				articulosDAO.updateArticulo(artAux);
+				lineaPedido.setPedido(pedidoPreparacion);
+				pedidoPreparacion.getLineasPedido().add(lineaPedido);
+			}
 
-		return pedidoPreparacion;
+			return pedidoPreparacion;
+		}
 	}
 
 	/**
@@ -142,17 +150,17 @@ public class GestionPedidos implements IRealizaPedidosLocal, IRealizaPedidosRemo
 	 * @return El pedido
 	 */
 	@Override
-	public Pedido confirmarPedido(){//(Date horaRecogida ) {
-		//this.pedidoPreparacion.setHoraRecogida(horaRecogida);
+	public Pedido confirmarPedido(Date horaRecogida) {
+		this.pedidoPreparacion.setHoraRecogida(horaRecogida);
 		pedidoPreparacion.setEstado(EstadoPedido.PENDIENTE);
-		pedidoPreparacion = pedidosDAO.addPedido(pedidoPreparacion);		
+		pedidoPreparacion = pedidosDAO.addPedido(pedidoPreparacion);	
+		
 		return pedidoPreparacion;
 	}
 
 	// Getters y setters. Necesarios para futuros tests unitarios con mockito para poder
 	// asignar un valor a los atributos DAO ya que no disponemos de la inyeccion del
 	// EJB.
-
 	public IPedidosDAO getPedidosDAO() {
 		return pedidosDAO;
 	}
