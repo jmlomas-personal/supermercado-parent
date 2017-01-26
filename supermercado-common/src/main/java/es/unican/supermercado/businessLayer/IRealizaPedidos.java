@@ -8,6 +8,11 @@ import es.unican.supermercado.utils.ArticuloNotFoundException;
 import es.unican.supermercado.utils.StockInsuficienteException;
 import es.unican.supermercado.utils.UsuarioNoExisteException;
 
+/**
+ * Interfaz proporcionada por GestionPedidos
+ * @author MacbookAir
+ *
+ */
 public abstract interface IRealizaPedidos {
 
 	public void crearPedido(String dni) throws UsuarioNoExisteException;

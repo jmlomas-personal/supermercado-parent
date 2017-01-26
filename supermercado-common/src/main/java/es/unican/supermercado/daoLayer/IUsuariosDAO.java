@@ -4,6 +4,11 @@ import java.util.List;
 
 import es.unican.supermercado.businessLayer.entities.Usuario;
 
+/**
+ * Interfaz proporcionada por el DAO de Usuarios
+ * @author MacbookAir
+ *
+ */
 public interface IUsuariosDAO {
 
 	public Usuario addUsuario(Usuario usuario);

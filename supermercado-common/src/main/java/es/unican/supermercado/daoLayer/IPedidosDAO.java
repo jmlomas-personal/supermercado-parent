@@ -5,6 +5,11 @@ import java.util.List;
 import es.unican.supermercado.businessLayer.entities.EstadoPedido;
 import es.unican.supermercado.businessLayer.entities.Pedido;
 
+/**
+ * Interfaz proporcionada por el DAO de Pedidos
+ * @author MacbookAir
+ *
+ */
 public interface IPedidosDAO {
 
 	public Pedido addPedido(Pedido pedido);

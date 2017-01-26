@@ -4,6 +4,11 @@ import java.util.List;
 
 import es.unican.supermercado.businessLayer.entities.Articulo;
 
+/**
+ * Interfaz proporcionada por el DAO de Articulos
+ * @author MacbookAir
+ *
+ */
 public interface IArticulosDAO {
 
 	public Articulo addArticulo(Articulo articulo);

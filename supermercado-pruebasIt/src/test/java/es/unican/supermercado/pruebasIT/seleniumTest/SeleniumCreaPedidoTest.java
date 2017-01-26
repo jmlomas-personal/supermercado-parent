@@ -17,6 +17,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 
+/**
+ * Clase que contiene  pruebas de aceptacion automatizadas con el 
+ * framework Selenium. 
+ * @author MacbookAir
+ *
+ */
 public class SeleniumCreaPedidoTest {
 	private WebDriver driver;
 	private String baseUrl;

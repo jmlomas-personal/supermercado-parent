@@ -11,6 +11,11 @@ import es.unican.supermercado.daoLayer.impl.ArticulosDAO;
 
 import static org.mockito.Mockito.*;
 
+/**
+ * Clase de prueba de la clase DAO de Articulos
+ * @author MacbookAir
+ *
+ */
 public class ArticulosDAOTest {
 
 	private static IArticulosDAO articulosDAO;

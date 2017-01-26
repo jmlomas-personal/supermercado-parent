@@ -20,6 +20,11 @@ import es.unican.supermercado.daoLayer.IArticulosDAO;
 import es.unican.supermercado.utils.ArticuloNotFoundException;
 import es.unican.supermercado.utils.ArticuloYaExisteException;
 
+/**
+ * Clase que contiene las pruebas de integracion del sistema
+ * @author MacbookAir
+ *
+ */
 public class GestionArticulosIT {
 
 
