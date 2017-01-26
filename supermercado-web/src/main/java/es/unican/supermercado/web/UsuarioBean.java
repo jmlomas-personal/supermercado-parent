@@ -44,7 +44,7 @@ public class UsuarioBean implements Serializable {
 			usuario = registroUsuarios.dameUsuario(dni);
 			isUserLogged = true;
 			// Pasamos a la siguiente pantalla
-			return "/app/listaArticulos.xhtml";
+			return "/app/listaArticulos.xhtml?faces-redirect=true";
 			
 		}catch(UsuarioNoExisteException e){		
 			msg = new FacesMessage(bundle.getString("login_input_error"));
@@ -71,7 +71,7 @@ public class UsuarioBean implements Serializable {
         dni = "";
         isUserLogged = false;
         
-        return "/login.xhtml";
+        return "/login.xhtml?faces-redirect=true";
 	}
 	
 	public String altaUsuario() {
